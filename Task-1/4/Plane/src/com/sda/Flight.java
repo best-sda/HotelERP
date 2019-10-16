@@ -1,11 +1,24 @@
 package com.sda;
 
-public class Flight {
-    String departurePoint ;
-    String arrivalPoint;
-    String date;
-    Boolean flightDelay;
+import java.util.ArrayList;
 
+public class Flight {
+    private String departurePoint ;
+    private String arrivalPoint;
+    private String date;
+    private Boolean flightDelay;
+    private Plane plane;
+    private int freeSeatsOnFlight;
+
+    public void addToTiketList(Ticket ticket) {
+        tiketList.add(ticket);
+    }
+
+    private ArrayList<Ticket> tiketList = new ArrayList <>();
+
+    public ArrayList <Ticket> getTiketList() {
+        return tiketList;
+    }
 
     public Boolean getFlightDelay() {
         return flightDelay;
@@ -65,8 +78,7 @@ public class Flight {
         this.freeSeatsOnFlight = freeSeatsOnFlight;
     }
 
-    Plane plane;
-    int freeSeatsOnFlight;
+
 
     public Flight(String departurePoint, String arrivalPoint, String date, Plane plane, int freeSeatsOnFlight) {
         this.departurePoint = departurePoint;

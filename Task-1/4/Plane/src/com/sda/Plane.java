@@ -1,7 +1,9 @@
 package com.sda;
 
 public class Plane {
-    int planeID;
+    private int planeID;
+    private String name;
+    private int countOfSeats;
 
     public Plane(int planeID, String name, int countOfSeats) {
         this.planeID = planeID;
@@ -9,8 +11,7 @@ public class Plane {
         this.countOfSeats = countOfSeats;
     }
 
-    String name;
-    int countOfSeats;
+
     public int getPlaneID() {
         return planeID;
     }

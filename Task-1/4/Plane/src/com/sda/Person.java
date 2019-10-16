@@ -8,8 +8,8 @@ public class Person {
         this.sex = sex;
     }
 
-    String fullName;
-    int IDCardNumber;
+   private String fullName;
+   private int IDCardNumber;
 
     public String getFullName() {
         return fullName;
@@ -43,6 +43,6 @@ public class Person {
         this.sex = sex;
     }
 
-    int dateOfBirth;
-    String sex;
+   private int dateOfBirth;
+   private String sex;
 }
