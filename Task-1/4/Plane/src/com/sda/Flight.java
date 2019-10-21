@@ -3,12 +3,15 @@ package com.sda;
 import java.util.ArrayList;
 
 public class Flight {
+
+    private int flightID;
     private String departurePoint ;
     private String arrivalPoint;
     private String date;
     private Boolean flightDelay;
     private Plane plane;
     private int freeSeatsOnFlight;
+    private Boolean flightCancel;
 
     public void addToTiketList(Ticket ticket) {
         tiketList.add(ticket);
@@ -35,8 +38,6 @@ public class Flight {
     public void setFlightCancel(Boolean flightCancel) {
         this.flightCancel = flightCancel;
     }
-
-    Boolean flightCancel;
 
     public String getDeparturePoint() {
         return departurePoint;
@@ -78,9 +79,16 @@ public class Flight {
         this.freeSeatsOnFlight = freeSeatsOnFlight;
     }
 
+    public int getFlightID() {
+        return flightID;
+    }
 
+    public void setFlightID(int flightID) {
+        this.flightID = flightID;
+    }
 
-    public Flight(String departurePoint, String arrivalPoint, String date, Plane plane, int freeSeatsOnFlight) {
+    public Flight(int flightID, String departurePoint, String arrivalPoint, String date, Plane plane, int freeSeatsOnFlight) {
+        this.flightID = flightID;
         this.departurePoint = departurePoint;
         this.arrivalPoint = arrivalPoint;
         this.date = date;
