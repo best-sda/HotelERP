@@ -2,9 +2,9 @@ package com.sda;
 
 public class Notebook implements IProduct {
 
-    Body body;
-    MatherBoard matherBoard;
-    Display display;
+   private Body body;
+   private MatherBoard matherBoard;
+   private Display display;
 
     @Override
     public void installFirstPart(IProductPart productPart) {
