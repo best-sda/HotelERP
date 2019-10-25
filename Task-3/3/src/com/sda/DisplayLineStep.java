@@ -3,9 +3,10 @@ package com.sda;
 public class DisplayLineStep implements ILineStep {
 
     @Override
-    public Display buildProductPart() {
+    public IProductPart buildProductPart() {
         System.out.println("Изготовление дисплея");
-        Display display = new Display("1920x1080");
+        IProductPart display = new ProductPart("Display");
         return display;
     }
+
 }

@@ -2,15 +2,15 @@ package com.sda;
 
 public class Notebook implements IProduct {
 
-   private Body body;
-   private MatherBoard matherBoard;
-   private Display display;
+    private IProductPart body;
+    private IProductPart matherBoard;
+    private IProductPart display;
 
     @Override
     public void installFirstPart(IProductPart productPart) {
 
         System.out.println("Установка материнской платы");
-        this.matherBoard = (MatherBoard) productPart;
+        this.matherBoard = productPart;
 
     }
 
@@ -18,7 +18,7 @@ public class Notebook implements IProduct {
     public void installSecondPart(IProductPart productPart) {
 
         System.out.println("Установка дисплея");
-        this.display = (Display) productPart;
+        this.display = productPart;
 
     }
 
@@ -26,10 +26,11 @@ public class Notebook implements IProduct {
     public void installThirdPart(IProductPart productPart) {
 
         System.out.println("Установка корпуса");
-        this.body = (Body) productPart;
+        this.body = productPart;
 
     }
 
     public Notebook() {
     }
+
 }

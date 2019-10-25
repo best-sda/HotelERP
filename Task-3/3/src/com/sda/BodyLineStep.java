@@ -3,9 +3,9 @@ package com.sda;
 public class BodyLineStep implements ILineStep {
 
     @Override
-    public Body buildProductPart() {
+    public IProductPart buildProductPart() {
         System.out.println("Изготовление корпуса");
-        Body body = new Body("black");
+        IProductPart body = new ProductPart("Body");
         return body;
     }
 
