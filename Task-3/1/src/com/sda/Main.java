@@ -8,13 +8,14 @@ public class Main {
 
     public static void main(String[] args) {
         Random random = new Random();
-        int number = random.nextInt(999);
+        int number = random.nextInt(900) + 100;
         int summDigit = 0;
-        System.out.print("Сумма цифр числа "+ number);
-        for (; number > 0; number /= 10){
-            int digit = number%10;
+        System.out.print("Сумма цифр числа " + number);
+        for (; number > 0; number /= 10) {
+            int digit = number % 10;
             summDigit += digit;
         }
-        System.out.print( " равна " + summDigit);
-   }
+        System.out.print(" равна " + summDigit);
+    }
+
 }
