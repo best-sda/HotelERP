@@ -3,15 +3,22 @@ package com.sda;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
 
 public class MyCollection<T> implements Collection<T> {
     private final int INIT_SIZE = 5;
-    //private final int CUT_RATE = 4;
-    private Object[] arr = new Object[INIT_SIZE];
-    private int size = 0;
+    private Object[] arr;
+    private int size;
 
+    public MyCollection() {
+        this.arr = new Object[INIT_SIZE];
+        this.size = 0;
+    }
+
+    public MyCollection(T[] arr) {
+        this.arr = arr == null ? new Object[INIT_SIZE] :
+                Arrays.copyOf(arr, arr.length);
+        this.size = arr == null ? 0 : arr.length;
+    }
 
     @Override
     public int size() {
@@ -20,22 +27,17 @@ public class MyCollection<T> implements Collection<T> {
 
     @Override
     public boolean isEmpty() {
-        return size==0;
+        return size == 0;
     }
 
     @Override
-    public boolean contains(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (arr[i] == o) {
-                return true;
-            }
-        }
-        return false;
+    public boolean contains(Object object) {
+        return Arrays.stream(arr).limit(size).anyMatch(e -> e == object);
     }
 
     @Override
-    public Iterator <T> iterator() {
-        return null;
+    public Iterator iterator() {
+        return Arrays.stream(arr).limit(size).iterator();
     }
 
     @Override
@@ -44,20 +46,18 @@ public class MyCollection<T> implements Collection<T> {
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
-        if (a.length < size)
-            return (T1[]) Arrays.copyOf(arr, size, a.getClass());
-        System.arraycopy(arr, 0, a, 0, size);
-        if (a.length > size)
-            a[size] = null;
-        return a;
+    public <E> E[] toArray(E[] a) {
+        if (size <= a.length) {
+            Object[] result = new Object[a.length];
+            Arrays.copyOf(Arrays.stream(arr).limit(size).toArray(), size);
+            return ((E[]) result);
+        }
+        return (E[]) Arrays.stream(arr).limit(size).toArray();
     }
-
-
 
     @Override
     public boolean add(T t) {
-       if (size == arr.length - 1) {
+        if (size >= arr.length - 1) {
            resize(arr.length*2);
        }
         arr[size++] = t;
@@ -71,12 +71,13 @@ public class MyCollection<T> implements Collection<T> {
     }
 
     @Override
-    public boolean remove(Object o) {
-        for (int i = 0; i < size; i++) {
-            if (arr[i] == o) {
-                System.arraycopy(arr, i + 1, arr, i,size--);
-                return true;
-            }
+    public boolean remove(Object object) {
+        int index = Arrays.asList(arr).indexOf(object);
+        if (index == size - 1) {
+            size--;
+        } else if (index >= 0) {
+            System.arraycopy(arr, index + 1, arr, index, size - index);
+            return true;
         }
         return false;
     }
@@ -84,59 +85,37 @@ public class MyCollection<T> implements Collection<T> {
 
     @Override
     public boolean containsAll(Collection <?> c) {
-        return false;
+        return Arrays.stream(arr).limit(size).allMatch(c::contains);
     }
 
     @Override
-    public boolean addAll(Collection <? extends T> c) {
-        Object[] a = c.toArray();
-        if (arr.length <= size+ a.length +1){
-            System.arraycopy(a, 0, arr, size,a.length );
-            return true;
+    public boolean addAll(Collection c) {
+        for (Object object : c) {
+            add((T) object);
         }
-        else {
-            resize(arr.length + a.length +1);
-            System.arraycopy(a, 0, arr, size,a.length );
-            return true;
-        }
+        return true;
     }
 
     @Override
     public boolean removeAll(Collection <?> c) {
-        Object[] a = c.toArray();
-        int count = 0;
-        for (int i = 0; i < a.length ; i++) {
-            for (int j = 0; j < size ; j++) {
-                if (arr[i].equals(a[i])) {
-                    System.arraycopy(arr, i + 1, arr, i,size--);
-                    count++;
-                }
-
-            }
-        }
-        if (count == a.length) {
-            return true;
-        } else {
-            return false;
-        }
+        int sizeBefore = arr.length;
+        arr = Arrays.stream(arr).limit(size).filter(e -> c.contains(e)).toArray();
+        size = arr.length;
+        return sizeBefore != arr.length;
     }
 
     @Override
-    public boolean removeIf(Predicate <? super T> filter) {
-        return false;
-    }
-
-    @Override
-    public boolean retainAll(Collection <?> c) {
-        Object[] a = c.toArray();
-
-        return false;
+    public boolean retainAll(Collection c) {
+        int sizeBefore = arr.length;
+        arr = Arrays.stream(arr).limit(size).filter(c::contains).toArray();
+        size = arr.length;
+        return sizeBefore != arr.length;
     }
 
     @Override
     public void clear() {
-        for (int i = 0; i < size ; i++) {
-            arr[i] = null;
-        }
+        arr = new Object[INIT_SIZE];
+        size = 0;
     }
+
 }
