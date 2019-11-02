@@ -1,9 +1,10 @@
 package com.sda;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Guest extends Person {
+public class Guest extends Person implements Serializable {
 
     private Integer room;
     private List <Service> choosedServices = new ArrayList <>();

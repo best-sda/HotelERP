@@ -4,27 +4,46 @@ import java.util.List;
 
 public class SaveAndLoad {
 
-    public static void save() throws IOException {
+    public static void save() {
         Administrator administrator = Administrator.getInstance();
-        FileOutputStream fos = new FileOutputStream("serviceList.txt");
-        ObjectOutputStream oos = new ObjectOutputStream(fos);
-        oos.writeObject(administrator.serviceList);
-        FileOutputStream fos2 = new FileOutputStream("roomList.txt");
-        ObjectOutputStream oos2 = new ObjectOutputStream(fos2);
-        oos2.writeObject(administrator.roomList);
-        FileOutputStream fos3 = new FileOutputStream("guestList.txt");
-        ObjectOutputStream oos3 = new ObjectOutputStream(fos3);
-        oos3.writeObject(administrator.guestList);
+        FileOutputStream fos = null;
+        ObjectOutputStream oos = null;
+        try {
+            fos = new FileOutputStream("serviceList.txt");
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(administrator.serviceList);
+            fos = new FileOutputStream("roomList.txt");
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(administrator.roomList);
+            fos = new FileOutputStream("guestList.txt");
+            oos = new ObjectOutputStream(fos);
+            oos.writeObject(administrator.guestList);
+
+        } catch (IOException e) {
+            System.out.println("не удалось сохранить данные в файл");
+            e.printStackTrace();
+        }
+
     }
 
-    public static void load() throws IOException, ClassNotFoundException {
+    public static void load() {
         Administrator administrator = Administrator.getInstance();
-        ObjectInputStream ois = new ObjectInputStream(new FileInputStream("serviceList.txt"));
-        administrator.serviceList = (List <Service>) ois.readObject();
-        ObjectInputStream ois2 = new ObjectInputStream(new FileInputStream("roomList.txt"));
-        administrator.roomList = (List <Room>) ois2.readObject();
-        ObjectInputStream ois3 = new ObjectInputStream(new FileInputStream("guestList.txt"));
-        administrator.guestList = (List <Guest>) ois3.readObject();
+        ObjectInputStream ois = null;
+        try {
+            ois = new ObjectInputStream(new FileInputStream("serviceList.txt"));
+            administrator.serviceList = (List <Service>) ois.readObject();
+            ois = new ObjectInputStream(new FileInputStream("roomList.txt"));
+            administrator.roomList = (List <Room>) ois.readObject();
+            ois = new ObjectInputStream(new FileInputStream("guestList.txt"));
+            administrator.guestList = (List <Guest>) ois.readObject();
+        } catch (IOException e) {
+            System.out.println("не удалось загрузить данные из файла");
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("не удалось загрузить данные из файла");
+            e.printStackTrace();
+        }
+
     }
 
 
