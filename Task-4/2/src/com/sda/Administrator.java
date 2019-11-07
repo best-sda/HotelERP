@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Administrator  {
 
-    List <Room> roomList = new ArrayList <Room>();
-    List <Guest> guestList = new ArrayList <Guest>();
-    List <Service> serviceList = new ArrayList <>();
+    private List <Room> roomList = new ArrayList <Room>();
+    private List <Guest> guestList = new ArrayList <Guest>();
+    private List <Service> serviceList = new ArrayList <>();
     private static Administrator instance;
     private Administrator(){}
     public static Administrator getInstance(){
@@ -22,6 +22,29 @@ public class Administrator  {
         guestList.add(guest);
     }
 
+    public List <Room> getRoomList() {
+        return roomList;
+    }
+
+    public void setRoomList(List <Room> roomList) {
+        this.roomList = roomList;
+    }
+
+    public List <Guest> getGuestList() {
+        return guestList;
+    }
+
+    public void setGuestList(List <Guest> guestList) {
+        this.guestList = guestList;
+    }
+
+    public void setServiceList(List <Service> serviceList) {
+        this.serviceList = serviceList;
+    }
+
+    public List <Service> getServiceList() {
+        return serviceList;
+    }
 
     public void setRegistration(int guestIDcard, int roomNumber) {
         Guest guest = guestList.stream()
@@ -90,14 +113,10 @@ public class Administrator  {
         System.out.println("Guests:");
         for (Guest guest : guestList) {
             System.out.println(guest.getName() + " " + guest.getSurname() +
-                    (guest.getRoom() == null ? " not registred" : " in room " + guest.getRoom()) + " choose services: " + guest.getCountServices());
+                    (guest.getRoom() == null ? " not registred" : " in room " + guest.getRoom())
+                    + " choose services: " + guest.getCountServices());
             guest.getChooseServices();
-            ;
         }
-    }
-
-    public List <Service> getServiceList() {
-        return serviceList;
     }
 
 }
