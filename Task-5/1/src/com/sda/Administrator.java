@@ -2,6 +2,7 @@ package com.sda;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public class Administrator {
 
@@ -21,10 +22,7 @@ public class Administrator {
     }
 
     private static void accept(Guest guest) {
-        System.out.println(guest.getName() + " " + guest.getSurname() +
-                (guest.getRoom() == null ? " not registred" : " in room " + guest.getRoom())
-                + " choose services: " + guest.getCountServices());
-        guest.getChooseServices();
+
     }
 
     public void addGuest(String name, String surName, int id) {
@@ -57,10 +55,9 @@ public class Administrator {
     }
 
     public void setRegistration(int guestIDcard, int roomNumber) {
-        Guest guest = guestList.stream()
-                .filter(a -> a.getIdCardNumber() == guestIDcard).findFirst().orElse(null);
+        Guest guest = guestList.stream().filter(a -> a.getIdCardNumber() == guestIDcard).findFirst().orElse(null);
         Room room = roomList.stream().filter(a -> a.getNumber() == roomNumber).findFirst().orElse(null);
-        if (guest.getRoom() == null && room.getBusy() == false) {
+        if (Optional.ofNullable(room).isPresent() && Optional.ofNullable(guest).isPresent()) {
             room.setBusy(true);
             guest.setRoom(room.getNumber());
         }
@@ -71,14 +68,15 @@ public class Administrator {
                 .filter(a -> a.getIdCardNumber() == guestIdCard).findFirst().orElse(null);
         Service service = serviceList.stream()
                 .filter(a -> a.getServiceName().equals(serviceName)).findFirst().orElse(null);
-        guest.setChooseServices(service);
+        if (Optional.ofNullable(service).isPresent() && Optional.ofNullable(guest).isPresent()) {
+            guest.setChooseServices(service);
+        }
     }
 
     public void cancelRegistration(int guestIdCard) {
-        Guest guest = guestList.stream()
-                .filter(a -> a.getIdCardNumber() == guestIdCard).findFirst().orElse(null);
-        if (guest.getRoom() != null) {
-            Room room = roomList.stream().filter(a -> a.getNumber() == guest.getRoom()).findFirst().orElse(null);
+        Guest guest = guestList.stream().filter(a -> a.getIdCardNumber() == guestIdCard).findFirst().orElse(null);
+        Room room = roomList.stream().filter(a -> a.getNumber() == guest.getRoom()).findFirst().orElse(null);
+        if (Optional.ofNullable(room).isPresent() && Optional.ofNullable(guest).isPresent()) {
             room.setBusy(false);
             guest.setRoom(null);
         }
@@ -103,26 +101,33 @@ public class Administrator {
 
     public void changeCost(int roomNumber, int newCost) {
         Room room = roomList.stream().filter(a -> a.getNumber() == roomNumber).findFirst().orElse(null);
-        room.setCost(newCost);
+        Optional.ofNullable(room).ifPresent(r -> r.setCost(newCost));
     }
 
     public void changeCost(String serviceName, int newCost) {
         Service service = serviceList.stream().filter(a -> a.getServiceName().equals(serviceName))
                 .findFirst().orElse(null);
-        service.setCost(newCost);
+        Optional.ofNullable(service).ifPresent(s -> s.setCost(newCost));
     }
 
     public void printRoomList() {
         System.out.println("Rooms:");
         for (Room room : roomList) {
-            System.out.println("Room #" + room.getNumber() + " is " + (room.getBusy() ? " ready" : " busy"));
+            if (Optional.ofNullable(room).isPresent()) {
+                System.out.println("Room #" + room.getNumber() + " is " + (room.getBusy() ? " ready" : " busy"));
+            }
         }
     }
 
     public void printGuestList() {
         System.out.println("Guests:");
         for (Guest guest : guestList) {
-            accept(guest);
+            if (Optional.ofNullable(guest).isPresent()) {
+                System.out.println(guest.getName() + " " + guest.getSurname() +
+                        (guest.getRoom() == null ? " not registred" : " in room " + guest.getRoom())
+                        + " choose services: " + guest.getCountServices());
+                guest.getChooseServices();
+            }
         }
     }
 
