@@ -56,32 +56,25 @@ public class Administrator {
     }
 
     public void setRegistration(int guestIDcard, int roomNumber) {
-        Guest guest = guestList.stream().filter(a -> a.getIdCardNumber() == guestIDcard).findFirst().orElse(null);
-        Room room = roomList.stream().filter(a -> a.getNumber() == roomNumber).findFirst().orElse(null);
-        Optional.ofNullable(guest).ifPresent(g -> Optional.ofNullable(room).ifPresent(r -> {
-            room.setBusy(true);
-            guest.setRoom(room.getNumber());
-        }));
+        guestList.stream().filter(a -> a.getIdCardNumber() == guestIDcard).findFirst().ifPresent(guest ->
+                roomList.stream().filter(a -> a.getNumber() == roomNumber).findFirst().ifPresent(room -> {
+                    room.setBusy(true);
+                    guest.setRoom(room.getNumber());
+                }));
     }
 
     public void setServiceToGuest(int guestIdCard, String serviceName) {
-        Guest guest = guestList.stream()
-                .filter(a -> a.getIdCardNumber() == guestIdCard).findFirst().orElse(null);
-        Service service = serviceList.stream()
-                .filter(a -> a.getServiceName().equals(serviceName)).findFirst().orElse(null);
-        Optional.ofNullable(guest).ifPresent(g -> Optional.ofNullable(service)
-                .ifPresent(s -> guest.setChooseServices(service)));
-
+        guestList.stream().filter(a -> a.getIdCardNumber() == guestIdCard).findFirst().ifPresent(g ->
+                serviceList.stream().filter(a -> a.getServiceName().equals(serviceName)).findFirst()
+                        .ifPresent(g::setChooseServices));
     }
 
     public void cancelRegistration(int guestIdCard) {
-        Guest guest = guestList.stream().filter(a -> a.getIdCardNumber() == guestIdCard).findFirst().orElse(null);
-        Room room = roomList.stream().filter(a -> a.getNumber() == guest.getRoom()).findFirst().orElse(null);
-        Optional.ofNullable(room).ifPresent(r -> Optional.ofNullable(guest).ifPresent(g -> {
-            room.setBusy(false);
-            guest.setRoom(null);
-        }));
-
+        guestList.stream().filter(a -> a.getIdCardNumber() == guestIdCard).findFirst().ifPresent(guest ->
+                roomList.stream().filter(a -> a.getNumber() == guest.getRoom()).findFirst().ifPresent(room -> {
+                    room.setBusy(false);
+                    guest.setRoom(null);
+                }));
     }
 
     public Service addService(String name, int cost, String description) {
@@ -102,12 +95,12 @@ public class Administrator {
     }
 
     public void changeCost(int roomNumber, int newCost) {
-        roomList.stream().filter(Objects::nonNull)
+        roomList.stream()
                 .filter(a -> a.getNumber() == roomNumber).findFirst().ifPresent(r -> r.setCost(newCost));
     }
 
     public void changeCost(String serviceName, int newCost) {
-        serviceList.stream().filter(Objects::nonNull).filter(a -> a.getServiceName().equals(serviceName))
+        serviceList.stream().filter(a -> a.getServiceName().equals(serviceName))
                 .findFirst().ifPresent(s -> s.setCost(newCost));
 
     }

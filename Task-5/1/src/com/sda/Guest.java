@@ -22,11 +22,9 @@ public class Guest extends Person implements Serializable {
     }
 
     public void setChooseServices(Service service) {
-        Service service1 = choosedServices.stream().filter(a -> a.getServiceName().equals(service.getServiceName()))
-                .findFirst().orElse(null);
-        if (service1 == null) {
-            this.choosedServices.add(service);
-        }
+        choosedServices.stream().filter(a -> a.getServiceName().equals(service.getServiceName()))
+                .findFirst().ifPresent(s -> this.choosedServices.add(service));
+
     }
 
     public void getChooseServices() {
@@ -41,3 +39,4 @@ public class Guest extends Person implements Serializable {
     }
 
 }
+
