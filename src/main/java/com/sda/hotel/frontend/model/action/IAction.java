@@ -5,4 +5,5 @@
 package com.sda.hotel.frontend.model.action;
 
 public interface IAction {
+    void execute();
 }

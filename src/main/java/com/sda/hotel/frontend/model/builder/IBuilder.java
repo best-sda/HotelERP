@@ -4,6 +4,8 @@
 
 package com.sda.hotel.frontend.model.builder;
 
+import com.sda.hotel.frontend.model.menu.Menu;
+
 public interface IBuilder {
-    void buildMenu();
+    Menu buildMenu();
 }

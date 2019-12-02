@@ -1,10 +1,16 @@
-package com.sda;
+/*
+ * Created by Dmitry Scherbakov in 02.12.2019, 16:11
+ */
+
+package com.sda.hotel.backend;
+
+import com.sda.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Guest extends Person implements Serializable {
+public class Guest extends com.sda.Person implements Serializable {
 
     private Integer room;
     private List <Service> choosedServices = new ArrayList <>();
@@ -22,11 +28,9 @@ public class Guest extends Person implements Serializable {
     }
 
     public void setChooseServices(Service service) {
-        Service service1 = choosedServices.stream().filter(a -> a.getServiceName().equals(service.getServiceName()))
-                .findFirst().orElse(null);
-        if (service1 == null) {
-            this.choosedServices.add(service);
-        }
+        choosedServices.stream().filter(a -> a.getServiceName().equals(service.getServiceName()))
+                .findFirst().ifPresent(s -> this.choosedServices.add(service));
+
     }
 
     public void getChooseServices() {
@@ -41,3 +45,4 @@ public class Guest extends Person implements Serializable {
     }
 
 }
+

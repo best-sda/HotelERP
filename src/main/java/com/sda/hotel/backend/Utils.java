@@ -42,26 +42,24 @@ public class Utils {
         }
     }
 
-    public void readProperties() {
-        FileInputStream fis;
-        Properties property = new Properties();
-
-        try {
-            fis = new FileInputStream("src/main/resources/config.properties");
-            property.load(fis);
-
-            String getChangeStatus = property.getProperty("сhangeRoomStatus");
-            String historyLvl = property.getProperty("historyRecords");
-
-            System.out.println("getChangeStatus: " + getChangeStatus
-                    + ", LOGIN: " + historyLvl);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("ОШИБКА: Файл свойств отсуствует!");
-        }
-
-    }
+//    FileInputStream fis;
+//    Properties property = new Properties();
+//
+//        try {
+//        fis = new FileInputStream("src/main/resources/config.properties");
+//        property.load(fis);
+//
+//        String host = property.getProperty("db.host");
+//        String login = property.getProperty("db.login");
+//        String password = property.getProperty("db.password");
+//
+//        System.out.println("HOST: " + host
+//                + ", LOGIN: " + login
+//                + ", PASSWORD: " + password);
+//
+//    } catch (IOException e) {
+//        System.err.println("ОШИБКА: Файл свойств отсуствует!");
+//    }
 
 
 }
