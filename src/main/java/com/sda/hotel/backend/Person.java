@@ -1,4 +1,8 @@
-package com.sda;
+/*
+ * Created by Dmitry Scherbakov in 02.12.2019, 16:15
+ */
+
+package com.sda.hotel.backend;
 
 import java.io.Serializable;
 

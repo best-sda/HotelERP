@@ -8,10 +8,6 @@
 
 package com.sda.hotel.backend;
 
-import com.sda.Guest;
-import com.sda.Room;
-import com.sda.Service;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

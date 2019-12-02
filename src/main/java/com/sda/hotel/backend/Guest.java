@@ -4,13 +4,12 @@
 
 package com.sda.hotel.backend;
 
-import com.sda.Service;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Guest extends com.sda.Person implements Serializable {
+public class Guest extends Person implements Serializable {
 
     private Integer room;
     private List <Service> choosedServices = new ArrayList <>();
