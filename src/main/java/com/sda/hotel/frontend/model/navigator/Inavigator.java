@@ -4,6 +4,7 @@
 
 package com.sda.hotel.frontend.model.navigator;
 
+import com.sda.hotel.frontend.exeption.MenuExeption;
 import com.sda.hotel.frontend.model.menu.Menu;
 
 public interface Inavigator {
@@ -13,5 +14,5 @@ public interface Inavigator {
 
     void printMenu();
 
-    void navigate(Integer index);
+    void navigate(Integer index) throws MenuExeption;
 }

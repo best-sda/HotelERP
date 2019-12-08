@@ -4,6 +4,7 @@
 
 package com.sda.hotel.frontend.controller;
 
+import com.sda.hotel.frontend.exeption.MenuExeption;
 import com.sda.hotel.frontend.model.builder.IBuilder;
 import com.sda.hotel.frontend.model.menu.MenuItem;
 import com.sda.hotel.frontend.model.navigator.Inavigator;
@@ -22,18 +23,21 @@ public class MenuController {
     }
 
     public void run() {
-      navigator.setCurentMenu(builder.buildMenu());
+        navigator.setCurentMenu(builder.buildMenu());
+        ViewController.getInstance().print("Hotel program");
+
         while (true){
-            ViewController.getInstance().print("Hotel program");
             navigator.printMenu();
 
-            try (Scanner scanner = new Scanner(System.in)) {
-                Integer index = scanner.nextInt();
+            Scanner scanner = new Scanner(System.in);
 
-                Optional.ofNullable(navigator.getCurentMenu().getItems().get(index-1)).ifPresent(action ->{
-                    action.getAction().execute();
-                });
-                navigator.navigate(index);
+            Integer index = scanner.nextInt();
+
+            try {
+                navigator.navigate(index - 1);
+            } catch ( MenuExeption e) {
+                ViewController.getInstance().print("invalid number, shod be in range " + 1
+                        + navigator.getCurentMenu().getItems().size());
             }
         }
     }

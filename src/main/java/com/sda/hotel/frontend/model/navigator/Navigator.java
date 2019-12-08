@@ -4,10 +4,13 @@
 
 package com.sda.hotel.frontend.model.navigator;
 
+import com.sda.hotel.frontend.exeption.MenuExeption;
+import com.sda.hotel.frontend.model.action.IAction;
 import com.sda.hotel.frontend.model.menu.Menu;
 import com.sda.hotel.frontend.model.menu.MenuItem;
 import com.sda.hotel.frontend.view.ViewController;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 public class Navigator implements Inavigator {
@@ -30,7 +33,12 @@ public class Navigator implements Inavigator {
     }
 
     @Override
-    public void navigate(Integer index) {
-        curentMenu = curentMenu.getItems().get(index).getNextMenu();
+    public void navigate(Integer index) throws MenuExeption {
+        if (index < 0 || index > curentMenu.getItems().size()){
+            throw  new MenuExeption("invalide index");
+        }
+        MenuItem submenu = curentMenu.getItems().get(index);
+        Optional.ofNullable(submenu.getAction()).ifPresent(IAction::execute);
+        curentMenu = submenu.getNextMenu();
     }
 }

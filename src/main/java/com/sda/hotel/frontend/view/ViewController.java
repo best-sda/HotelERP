@@ -18,7 +18,7 @@ public class ViewController {
     }
 
     public void print(String value) {
-
+        System.out.println(value);
     }
 
     public void printList(List<String> list) {

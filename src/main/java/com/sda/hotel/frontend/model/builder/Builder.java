@@ -59,6 +59,6 @@ public class Builder implements IBuilder {
         rootMenu.addItem(new MenuItem(serviceMenu.getName(), serviceMenu, null));
         rootMenu.addItem(new MenuItem(administrationMenu.getName(), administrationMenu, null));
 
-        return roomMenu;
+        return rootMenu;
     }
 }

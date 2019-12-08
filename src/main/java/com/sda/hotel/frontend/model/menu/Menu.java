@@ -4,6 +4,7 @@
 
 package com.sda.hotel.frontend.model.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,9 @@ public class Menu {
     }
 
     public void addItem(MenuItem item) {
+        if(items == null){
+            items = new ArrayList<>();
+        }
         Optional.ofNullable(items).ifPresent(menuItems -> menuItems.add(item));
     }
 }

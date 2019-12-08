@@ -5,4 +5,8 @@
 package com.sda.hotel.frontend.model.action;
 
 public class Action implements IAction {
+    @Override
+    public void execute() {
+
+    }
 }
