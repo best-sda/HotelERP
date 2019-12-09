@@ -6,12 +6,13 @@ package com.sda.hotel.backend.service;
 
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.repository.GuestRepisitory;
+import com.sda.hotel.backend.repository.GuestRepisitoryImpl;
 
 import java.util.List;
 
 public class GuestServiceImpl implements GuestService {
 
-    private GuestRepisitory guestRepisitory;
+    private GuestRepisitory guestRepisitory = new GuestRepisitoryImpl();
 
     @Override
     public Guest save(Guest guest) {

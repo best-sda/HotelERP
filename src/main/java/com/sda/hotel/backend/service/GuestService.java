@@ -9,10 +9,7 @@ import com.sda.hotel.backend.domain.Guest;
 import java.util.List;
 
 public interface GuestService {
-
     Guest save(Guest guest);
-
     List<Guest> findBySurname(String surname);
-
     void delete(int id);
 }

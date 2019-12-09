@@ -1,0 +1,15 @@
+/*
+ * Created by Dmitry Scherbakov in 09.12.2019, 15:25
+ */
+
+package com.sda.hotel.backend.repository;
+
+import com.sda.hotel.backend.domain.Room;
+
+import java.util.List;
+
+public interface RoomRepository {
+    Room save(Room guest);
+    void delete(int id);
+    List <Room> roomList();
+}

@@ -6,7 +6,6 @@ package com.sda.hotel.backend.repository;
 
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
-import jdk.internal.jline.internal.Nullable;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -18,7 +17,7 @@ public class GuestRepisitoryImpl implements GuestRepisitory {
     private List<Guest> guests = new ArrayList<>();
 
     @Override
-    public List <Guest> findBySurname(@Nullable String surname) {
+    public List <Guest> findBySurname(String surname) {
             return guests.stream().filter(g -> surname != null && g.getSurname().toUpperCase()
                     .startsWith(surname.toUpperCase())).collect(Collectors.toList());
     }
