@@ -30,10 +30,10 @@ public class ShowGuestAction implements IAction {
             } else {
                 guests.forEach(guest -> ViewController.getInstance().print("ID: " + guest.getId()
                         + " " + guest.getName() + " " + guest.getSurname()));
-                ViewController.getInstance().print("close");
             }
         } catch (EntityNotFoundExeption e) {
             ViewController.getInstance().print("Guest not found" + e.getId());
         }
+
     }
 }

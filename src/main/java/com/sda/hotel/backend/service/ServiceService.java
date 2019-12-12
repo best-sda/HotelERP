@@ -4,5 +4,17 @@
 
 package com.sda.hotel.backend.service;
 
+import com.sda.hotel.backend.domain.Service;
+
+import java.util.List;
+
 public interface ServiceService {
+    Service save(Service service);
+
+    List <Service> findByName(String name);
+
+    void delete(int id);
+
+    Service servicewithId(int id);
+
 }

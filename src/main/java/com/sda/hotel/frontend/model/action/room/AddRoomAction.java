@@ -21,7 +21,7 @@ public class AddRoomAction implements IAction {
         Integer number = scanner.nextInt();
         ViewController.getInstance().print("Input room status: ");
         String status = scanner.nextLine();
-        ViewController.getInstance().print("Input room cost");
+        ViewController.getInstance().print("Input room description");
         Integer id = scanner.nextInt();
 
         RoomService roomService = Application.getInstance().getRoomService();

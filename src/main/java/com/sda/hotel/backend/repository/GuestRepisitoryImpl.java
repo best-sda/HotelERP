@@ -5,10 +5,10 @@
 package com.sda.hotel.backend.repository;
 
 import com.sda.hotel.backend.domain.Guest;
+import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,4 +35,32 @@ public class GuestRepisitoryImpl implements GuestRepisitory {
         guests.remove(id);
 
     }
+
+    @Override
+    public Guest guestWithId(int id) {
+        return guests.stream().filter(guest -> guest.getId().equals(id)).findFirst()
+                .orElseThrow(EntityNotFoundExeption::new);
+    }
+
+    @Override
+    public void setRoomToGuest(Guest guest, Integer roomNumber) {
+        guest.setRoom(roomNumber);
+    }
+
+    @Override
+    public List <Guest> getChelinedGests() {
+        return guests.stream().filter(guest -> guest.getRoom() != null).collect(Collectors.toList());
+    }
+
+    @Override
+    public void chekout(Integer idGuest) {
+        guests.stream().filter(guest -> guest.getId().equals(idGuest)).findFirst()
+                .ifPresent(guest -> guest.setRoom(null));
+    }
+
+    @Override
+    public void setServiceToGuest(Guest guest, Service service) {
+        guest.addService(service);
+    }
+
 }

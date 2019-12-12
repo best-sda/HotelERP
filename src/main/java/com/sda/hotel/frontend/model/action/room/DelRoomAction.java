@@ -18,6 +18,15 @@ import java.util.Scanner;
 public class DelRoomAction implements IAction {
     @Override
     public void execute() {
+        RoomService roomService = Application.getInstance().getRoomService();
+        ViewController.getInstance().print("Input room number to delete: ");
+        Scanner scanner = new Scanner(System.in);
+        Integer roomNumber = scanner.nextInt();
+       try{
+           roomService.delete(roomNumber);
+       } catch (EntityNotFoundExeption e) {
+           ViewController.getInstance().print("Room not found" + e.getId());
+       }
 
     }
 }

@@ -4,8 +4,7 @@
 
 package com.sda.hotel.backend.domain;
 
-import com.sda.hotel.backend.Service;
-
+import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -37,6 +36,10 @@ public class Guest extends Person {
 
     public void setChoosedServices(List <Service> choosedServices) {
         this.choosedServices = choosedServices;
+    }
+
+    public void addService (Service service) {
+        choosedServices.add(service);
     }
 
     public Guest(String name, String surName, int idCard) {

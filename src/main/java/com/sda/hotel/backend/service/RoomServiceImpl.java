@@ -20,12 +20,32 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List <Room> roomList(Integer number) {
+    public List <Room> roomList() {
         return roomRepository.roomList();
     }
 
     @Override
     public void delete(int id) {
         roomRepository.delete(id);
+    }
+
+    @Override
+    public List <Room> showRooms() {
+        return null;
+    }
+
+    @Override
+    public Room roomWithId(int id) {
+        return roomRepository.roomWithId(id);
+    }
+
+    @Override
+    public void setRoomBusy(Room room) {
+        roomRepository.setRoomBusy(room);
+    }
+
+    @Override
+    public void chekoutGuest(Integer guestId) {
+        roomRepository.chekoutGuest(guestId);
     }
 }

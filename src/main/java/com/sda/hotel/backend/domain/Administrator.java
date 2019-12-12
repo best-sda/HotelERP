@@ -5,4 +5,5 @@
 package com.sda.hotel.backend.domain;
 
 public class Administrator {
+
 }

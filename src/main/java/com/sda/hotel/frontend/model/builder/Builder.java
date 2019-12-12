@@ -37,11 +37,11 @@ public class Builder implements IBuilder {
 
         MenuItem addGuestItem = new MenuItem("Add guest", rootMenu, new AddGuestAction());
         MenuItem deleteGuestItem = new MenuItem("Del guest", rootMenu, new DelGuestAction());
-        MenuItem showGuestItem = new MenuItem("Wiew guest", rootMenu, new ShowGuestAction());
+        MenuItem showGuestItem = new MenuItem("Wiew guests", rootMenu, new ShowGuestAction());
 
-        MenuItem addServiceItem = new MenuItem("Add guest", rootMenu, new AddServiceAction());
-        MenuItem deleteServiceItem = new MenuItem("Del guest", rootMenu, new DelServiceAction());
-        MenuItem showServiceItem = new MenuItem("Wiew guest", rootMenu, new ShowServiceAction());
+        MenuItem addServiceItem = new MenuItem("Add service", rootMenu, new AddServiceAction());
+        MenuItem deleteServiceItem = new MenuItem("Del service", rootMenu, new DelServiceAction());
+        MenuItem showServiceItem = new MenuItem("Wiew services", rootMenu, new ShowServiceAction());
 
         MenuItem checkinItem = new MenuItem("Check-in guests to room", rootMenu, new CheckinAction());
         MenuItem setServiceItem = new MenuItem("Set service to room", rootMenu, new SetServiceAction());

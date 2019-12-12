@@ -4,11 +4,28 @@
 
 package com.sda.hotel.frontend.model.action.service;
 
+import com.sda.hotel.backend.Application;
+import com.sda.hotel.backend.domain.Service;
+import com.sda.hotel.backend.service.ServiceService;
 import com.sda.hotel.frontend.model.action.IAction;
+import com.sda.hotel.frontend.view.ViewController;
+
+import java.util.Scanner;
 
 public class AddServiceAction implements IAction {
     @Override
     public void execute() {
+        ViewController.getInstance().print("Input service info: ");
+        Scanner scanner = new Scanner(System.in);
+        ViewController.getInstance().print("Input service name: ");
+        String name = scanner.nextLine();
+        ViewController.getInstance().print("Input service cost: ");
+        Integer cost = scanner.nextInt();
+        ViewController.getInstance().print("Input service description");
+        String description = scanner.nextLine();
 
+        ServiceService serviceService = Application.getInstance().getServiceService();
+        Service service = serviceService.save(new Service(name, cost, description));
+        ViewController.getInstance().print("Service created with id: " + service.getId());
     }
 }

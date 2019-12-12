@@ -18,7 +18,6 @@ import java.util.Scanner;
 
 public class DelGuestAction implements IAction {
 
-    GuestRepisitory guestRepisitory;
     @Override
     public void execute() {
         ViewController.getInstance().print("Input guest surname to delete: ");

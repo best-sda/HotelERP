@@ -11,7 +11,15 @@ import java.util.List;
 public interface RoomService {
     Room save(Room room);
 
-    List <Room> roomList(Integer number);
+    List <Room> roomList();
 
     void delete(int id);
+
+    List <Room> showRooms();
+
+    Room roomWithId(int id);
+
+    void setRoomBusy(Room room);
+
+    void chekoutGuest(Integer guestId);
 }
