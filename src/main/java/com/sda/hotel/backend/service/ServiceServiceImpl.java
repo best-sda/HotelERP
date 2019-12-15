@@ -11,7 +11,7 @@ import com.sda.hotel.backend.repository.ServiceRepositoryImpl;
 import java.util.List;
 
 public class ServiceServiceImpl implements ServiceService {
-    ServiceRepository serviceRepository = new ServiceRepositoryImpl();
+    private ServiceRepository serviceRepository = new ServiceRepositoryImpl();
 
     @Override
     public Service save(Service service) {
@@ -31,5 +31,15 @@ public class ServiceServiceImpl implements ServiceService {
     @Override
     public Service servicewithId(int id) {
         return serviceRepository.servicewithId(id);
+    }
+
+    @Override
+    public void loadList() {
+        serviceRepository.loadList();
+    }
+
+    @Override
+    public void saveList() {
+        serviceRepository.saveList();
     }
 }

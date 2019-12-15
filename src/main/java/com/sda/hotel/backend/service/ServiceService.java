@@ -17,4 +17,8 @@ public interface ServiceService {
 
     Service servicewithId(int id);
 
+    void loadList();
+
+    void saveList();
+
 }

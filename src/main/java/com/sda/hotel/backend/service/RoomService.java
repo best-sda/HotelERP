@@ -22,4 +22,9 @@ public interface RoomService {
     void setRoomBusy(Room room);
 
     void chekoutGuest(Integer guestId);
+
+    void loadList();
+
+    void saveList();
+
 }

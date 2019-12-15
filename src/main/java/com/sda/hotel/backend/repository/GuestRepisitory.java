@@ -25,4 +25,8 @@ public interface GuestRepisitory {
     void chekout(Integer idGuest);
 
     void setServiceToGuest(Guest guest, Service service);
+
+    void saveList();
+
+    void loadList();
 }

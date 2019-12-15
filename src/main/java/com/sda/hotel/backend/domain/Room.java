@@ -4,7 +4,9 @@
 
 package com.sda.hotel.backend.domain;
 
-public class Room {
+import java.io.Serializable;
+
+public class Room implements Serializable {
     private Integer number;
     private String status;
     private Boolean repair;

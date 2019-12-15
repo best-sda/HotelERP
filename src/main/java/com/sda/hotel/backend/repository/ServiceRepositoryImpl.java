@@ -6,12 +6,22 @@ package com.sda.hotel.backend.repository;
 
 import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
+import com.sda.hotel.backend.utils.Utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ServiceRepositoryImpl implements ServiceRepository {
+public class ServiceRepositoryImpl implements ServiceRepository, Serializable {
+    public List <Service> getServices() {
+        return services;
+    }
+
+    public void setServices(List <Service> services) {
+        this.services = services;
+    }
+
     private List<Service> services = new ArrayList<>();
     @Override
     public Service save(Service service) {
@@ -35,5 +45,15 @@ public class ServiceRepositoryImpl implements ServiceRepository {
     public Service servicewithId(int id) {
         return services.stream().filter(service -> service.getId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
+    }
+
+    @Override
+    public void saveList() {
+        Utils.saveList("serviceList.txt", getServices());
+    }
+
+    @Override
+    public void loadList() {
+        Utils.loadList("serviceList.txt", getServices());
     }
 }

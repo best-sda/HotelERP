@@ -25,4 +25,9 @@ public interface GuestService {
     void chekout(Integer idGuest);
 
     void setServiceToGuest(Guest guest, Service service);
+
+    void loadList();
+
+    void saveList();
+
 }

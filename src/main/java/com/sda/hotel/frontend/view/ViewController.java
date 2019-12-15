@@ -5,7 +5,6 @@
 package com.sda.hotel.frontend.view;
 
 import java.util.List;
-import java.util.Optional;
 
 public class ViewController {
     private  static ViewController instance;

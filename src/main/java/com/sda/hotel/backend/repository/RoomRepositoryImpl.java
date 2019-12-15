@@ -6,12 +6,13 @@ package com.sda.hotel.backend.repository;
 
 import com.sda.hotel.backend.domain.Room;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
+import com.sda.hotel.backend.utils.Utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class RoomRepositoryImpl implements RoomRepository {
+public class RoomRepositoryImpl implements RoomRepository, Serializable {
     private List<Room> rooms = new ArrayList<>();
     @Override
     public Room save(Room guest) {
@@ -44,4 +45,15 @@ public class RoomRepositoryImpl implements RoomRepository {
     public void chekoutGuest(Integer roomNumber) {
         rooms.get(roomNumber).setBusy(false);
     }
+
+    @Override
+    public void saveList() {
+        Utils.saveList("roomList.txt", roomList());
+    }
+
+    @Override
+    public void loadList() {
+        Utils.loadList("roomList.txt", roomList());
+    }
+
 }

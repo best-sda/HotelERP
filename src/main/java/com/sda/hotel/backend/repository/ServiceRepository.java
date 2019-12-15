@@ -16,4 +16,8 @@ public interface ServiceRepository {
     void delete(int id);
 
     Service servicewithId(int id);
+
+    void saveList();
+
+    void loadList();
 }

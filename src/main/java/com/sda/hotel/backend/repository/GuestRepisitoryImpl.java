@@ -7,12 +7,22 @@ package com.sda.hotel.backend.repository;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
+import com.sda.hotel.backend.utils.Utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class GuestRepisitoryImpl implements GuestRepisitory {
+public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
+
+    public List <Guest> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(List <Guest> guests) {
+        this.guests = guests;
+    }
 
     private List<Guest> guests = new ArrayList<>();
 
@@ -61,6 +71,16 @@ public class GuestRepisitoryImpl implements GuestRepisitory {
     @Override
     public void setServiceToGuest(Guest guest, Service service) {
         guest.addService(service);
+    }
+
+    @Override
+    public void saveList() {
+        Utils.saveList("guestsList.txt", getGuests());
+    }
+
+    @Override
+    public void loadList() {
+        Utils.loadList("guestsList.txt", getGuests());
     }
 
 }

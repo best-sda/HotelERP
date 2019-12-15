@@ -4,7 +4,6 @@
 
 package com.sda.hotel.frontend.model.builder;
 
-import com.sda.hotel.frontend.model.action.administration.CancelServiceAction;
 import com.sda.hotel.frontend.model.action.administration.CheckinAction;
 import com.sda.hotel.frontend.model.action.administration.ChekoutAction;
 import com.sda.hotel.frontend.model.action.administration.SetServiceAction;
@@ -17,6 +16,8 @@ import com.sda.hotel.frontend.model.action.room.ShowRoomAction;
 import com.sda.hotel.frontend.model.action.service.AddServiceAction;
 import com.sda.hotel.frontend.model.action.service.DelServiceAction;
 import com.sda.hotel.frontend.model.action.service.ShowServiceAction;
+import com.sda.hotel.frontend.model.action.utils.LoadFileAction;
+import com.sda.hotel.frontend.model.action.utils.SaveFileAction;
 import com.sda.hotel.frontend.model.menu.Menu;
 import com.sda.hotel.frontend.model.menu.MenuItem;
 
@@ -46,18 +47,22 @@ public class Builder implements IBuilder {
         MenuItem checkinItem = new MenuItem("Check-in guests to room", rootMenu, new CheckinAction());
         MenuItem setServiceItem = new MenuItem("Set service to room", rootMenu, new SetServiceAction());
         MenuItem cancelRegistrationItem = new MenuItem("Сheck-out gusest", rootMenu,new ChekoutAction());
-        MenuItem closeServiceItem = new MenuItem("Cansel service to room", rootMenu, new CancelServiceAction() );
+
+        MenuItem loadFileItem = new MenuItem("Load base", rootMenu, new LoadFileAction());
+        MenuItem saveFileItem = new MenuItem("Save base", rootMenu, new SaveFileAction());
 
 
         Menu roomMenu = new Menu("Rooom", Arrays.asList(addRoomItem, deleteRoomItem, showAllRoomItem));
         Menu guestMenu = new Menu("Guest", Arrays.asList(addGuestItem, deleteGuestItem, showGuestItem));
         Menu serviceMenu = new Menu("Service", Arrays.asList(addServiceItem, deleteServiceItem, showServiceItem));
-        Menu administrationMenu = new Menu("administration", Arrays.asList(checkinItem, setServiceItem, cancelRegistrationItem, closeServiceItem));
+        Menu administrationMenu = new Menu("administration", Arrays.asList(checkinItem, setServiceItem, cancelRegistrationItem));
+        Menu saveMenu = new Menu("Save/Load", Arrays.asList(loadFileItem, saveFileItem));
 
         rootMenu.addItem(new MenuItem(roomMenu.getName(), roomMenu, null));
         rootMenu.addItem(new MenuItem(guestMenu.getName(), guestMenu, null));
         rootMenu.addItem(new MenuItem(serviceMenu.getName(), serviceMenu, null));
         rootMenu.addItem(new MenuItem(administrationMenu.getName(), administrationMenu, null));
+        rootMenu.addItem(new MenuItem(saveMenu.getName(), saveMenu, null));
 
         return rootMenu;
     }

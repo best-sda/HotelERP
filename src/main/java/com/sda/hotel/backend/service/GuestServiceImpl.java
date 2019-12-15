@@ -55,4 +55,14 @@ public class GuestServiceImpl implements GuestService {
         guestRepisitory.setServiceToGuest(guest, service);
     }
 
+    @Override
+    public void loadList() {
+        guestRepisitory.loadList();
+    }
+
+    @Override
+    public void saveList() {
+        guestRepisitory.saveList();
+    }
+
 }

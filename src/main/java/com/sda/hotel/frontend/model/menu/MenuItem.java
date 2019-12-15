@@ -6,8 +6,6 @@ package com.sda.hotel.frontend.model.menu;
 
 import com.sda.hotel.frontend.model.action.IAction;
 
-import java.util.Optional;
-
 public class MenuItem {
     private String title;
     private IAction action;

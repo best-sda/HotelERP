@@ -48,4 +48,14 @@ public class RoomServiceImpl implements RoomService {
     public void chekoutGuest(Integer guestId) {
         roomRepository.chekoutGuest(guestId);
     }
+
+    @Override
+    public void loadList() {
+        roomRepository.loadList();
+    }
+
+    @Override
+    public void saveList() {
+        roomRepository.saveList();
+    }
 }

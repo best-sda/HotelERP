@@ -9,7 +9,6 @@ import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
 import com.sda.hotel.backend.service.GuestService;
 import com.sda.hotel.backend.service.RoomService;
-import com.sda.hotel.backend.service.RoomServiceImpl;
 import com.sda.hotel.frontend.model.action.IAction;
 import com.sda.hotel.frontend.view.ViewController;
 

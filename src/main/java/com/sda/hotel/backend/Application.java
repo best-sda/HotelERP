@@ -6,13 +6,11 @@ package com.sda.hotel.backend;
 
 import com.sda.hotel.backend.service.*;
 
-import java.util.ArrayList;
-
 public class Application {
     private static Application instance;
-    GuestService guestService;
-    RoomService roomService;
-    ServiceService serviceService;
+    private GuestService guestService;
+    private RoomService roomService;
+    private ServiceService serviceService;
     public static Application getInstance() {
         if(instance == null){
             instance = new Application();
