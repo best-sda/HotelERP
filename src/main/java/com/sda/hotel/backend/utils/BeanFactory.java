@@ -39,8 +39,8 @@ public class BeanFactory {
                 String beanName = classObject.getSimpleName().substring(0, 1).toLowerCase() + classObject.getSimpleName().substring(1);
                 singletons.put(beanName, instance);
             }
-        }
 
+        }
     }
 
     public void populateProperties() {
