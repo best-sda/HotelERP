@@ -4,21 +4,27 @@
 
 package com.sda.hotel.frontend.controller;
 
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.frontend.exeption.MenuExeption;
 import com.sda.hotel.frontend.model.builder.IBuilder;
-import com.sda.hotel.frontend.model.menu.MenuItem;
 import com.sda.hotel.frontend.model.navigator.Inavigator;
 import com.sda.hotel.frontend.view.ViewController;
 
-import java.util.Optional;
 import java.util.Scanner;
 
+@Component
 public class MenuController {
+    @Autowired
     private IBuilder builder;
+    @Autowired
     private Inavigator navigator;
 
-    public MenuController(IBuilder builder, Inavigator navigator) {
+    public void setBuilder(IBuilder builder) {
         this.builder = builder;
+    }
+
+    public void setNavigator(Inavigator navigator) {
         this.navigator = navigator;
     }
 
@@ -41,4 +47,5 @@ public class MenuController {
             }
         }
     }
+
 }

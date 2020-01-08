@@ -4,10 +4,12 @@
 
 package com.sda.hotel.backend.service;
 
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;
 
 import java.util.List;
 
+@Component
 public interface RoomService {
     Room save(Room room);
 

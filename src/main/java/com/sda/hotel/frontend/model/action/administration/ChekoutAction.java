@@ -5,6 +5,7 @@
 package com.sda.hotel.frontend.model.action.administration;
 
 import com.sda.hotel.backend.Application;
+import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
 import com.sda.hotel.backend.service.GuestService;
@@ -16,14 +17,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ChekoutAction implements IAction {
+
     @Override
-    public void execute() {
+    public void execute(Application application) {
 
         try {
-            GuestService guestService = Application.getInstance().getGuestService();
-            RoomService roomService = Application.getInstance().getRoomService();
+            GuestService guestService = application.getGuestServiceImpl();
+            RoomService roomService = application.getRoomServiceImpl();
             List <Guest> guests = guestService.getChekinedGests();
-            guests.forEach(guest -> ViewController.getInstance().print(guest.getId() + " " + guest.getName() + " "
+            guests.forEach(guest -> ViewController.getInstance().print(guest.getGuestId() + " " + guest.getName() + " "
                     +  guest.getSurname() + " " + guest.getRoom()));
             Scanner scanner = new Scanner(System.in);
             ViewController.getInstance().print("Chose id guest to checkout: ");

@@ -5,6 +5,7 @@
 package com.sda.hotel.frontend.model.action.administration;
 
 import com.sda.hotel.backend.Application;
+import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
@@ -17,20 +18,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SetServiceAction implements IAction {
+
     @Override
-    public void execute() {
+    public void execute(Application application) {
         ViewController.getInstance().print("Input guest surname to choose: ");
         Scanner scanner = new Scanner(System.in);
 
         try {
             String surname = scanner.nextLine();
 
-            GuestService guestService = Application.getInstance().getGuestService();
+            GuestService guestService = application.getGuestServiceImpl();
             List <Guest> guests = guestService.findBySurname(surname);
             if (guests.isEmpty()){
                 ViewController.getInstance().print("not found");
             }else {
-                guests.forEach(guest -> ViewController.getInstance().print("ID: " + guest.getId()
+                guests.forEach(guest -> ViewController.getInstance().print("ID: " + guest.getGuestId()
                         + " " + guest.getName() + " " + guest.getSurname()));
                 ViewController.getInstance().print("Input number to delete");
                 Guest guest = guestService.guestWithId(scanner.nextInt());
@@ -38,12 +40,12 @@ public class SetServiceAction implements IAction {
 
                 ViewController.getInstance().print("Input service name to choose: ");
                 String name = scanner.nextLine();
-                ServiceService serviceService = Application.getInstance().getServiceService();
+                ServiceService serviceService = application.getServiceServiceImpl();
                 List <Service> services = serviceService.findByName(name);
                 if (services.isEmpty()){
                     ViewController.getInstance().print("not found");
                 }else {
-                    services.forEach(service -> ViewController.getInstance().print("ID: " + service.getId()
+                    services.forEach(service -> ViewController.getInstance().print("ID: " + service.getServiceId()
                             + " " + service.getServiceName() + " " + service.getDescription()));
                     ViewController.getInstance().print("Input number to delete");
                     Service service = serviceService.servicewithId(scanner.nextInt());

@@ -4,14 +4,21 @@
 
 package com.sda.hotel.backend.service;
 
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.repository.ServiceRepository;
-import com.sda.hotel.backend.repository.ServiceRepositoryImpl;
 
 import java.util.List;
 
+@Component
 public class ServiceServiceImpl implements ServiceService {
-    private ServiceRepository serviceRepository = new ServiceRepositoryImpl();
+    @Autowired
+    private ServiceRepository serviceRepository;
+
+    public void setServiceRepository(ServiceRepository serviceRepository) {
+        this.serviceRepository = serviceRepository;
+    }
 
     @Override
     public Service save(Service service) {

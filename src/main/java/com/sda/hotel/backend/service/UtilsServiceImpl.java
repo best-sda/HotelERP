@@ -4,25 +4,41 @@
 
 package com.sda.hotel.backend.service;
 
-import com.sda.hotel.backend.Application;
-import com.sda.hotel.backend.repository.*;
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
 
+@Component
 public class UtilsServiceImpl implements UtilsService {
-    private ServiceService serviceService = Application.getInstance().getServiceService();
-    private GuestService guestService = Application.getInstance().getGuestService();
-    private RoomService roomService = Application.getInstance().getRoomService();
+    @Autowired
+    private ServiceService serviceServiceImpl;
+    @Autowired
+    private GuestService guestServiceImpl;
+    @Autowired
+    private RoomService roomServiceImpl;
+
+    public void setServiceServiceImpl(ServiceService serviceServiceImpl) {
+        this.serviceServiceImpl = serviceServiceImpl;
+    }
+
+    public void setGuestServiceImpl(GuestService guestServiceImpl) {
+        this.guestServiceImpl = guestServiceImpl;
+    }
+
+    public void setRoomServiceImpl(RoomService roomServiceImpl) {
+        this.roomServiceImpl = roomServiceImpl;
+    }
 
     @Override
     public void saveBase() {
-        roomService.saveList();
-        guestService.saveList();
-        serviceService.saveList();
+        roomServiceImpl.saveList();
+        guestServiceImpl.saveList();
+        serviceServiceImpl.saveList();
     }
 
     @Override
     public void loadFile() {
-        roomService.loadList();
-        guestService.loadList();
-        serviceService.loadList();
+        roomServiceImpl.loadList();
+        guestServiceImpl.loadList();
+        serviceServiceImpl.loadList();
     }
 }

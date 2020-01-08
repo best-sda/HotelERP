@@ -4,39 +4,43 @@
 
 package com.sda.hotel.backend;
 
-import com.sda.hotel.backend.service.*;
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
+import com.sda.hotel.backend.service.GuestService;
+import com.sda.hotel.backend.service.RoomService;
+import com.sda.hotel.backend.service.ServiceService;
 
+@Component
 public class Application {
-    private static Application instance;
-    private GuestService guestService;
-    private RoomService roomService;
-    private ServiceService serviceService;
-    public static Application getInstance() {
-        if(instance == null){
-            instance = new Application();
-        }
-        return instance;
+    @Autowired
+    private GuestService guestServiceImpl;
+    @Autowired
+    private RoomService roomServiceImpl;
+    @Autowired
+    private ServiceService serviceServiceImpl;
+
+    public void setRoomServiceImpl(RoomService roomServiceImpl) {
+        this.roomServiceImpl = roomServiceImpl;
     }
 
-    private Application(){
-        guestService = new GuestServiceImpl();
-        roomService = new RoomServiceImpl();
-        serviceService = new ServiceServiceImpl();
+    public void setServiceServiceImpl(ServiceService serviceServiceImpl) {
+        this.serviceServiceImpl = serviceServiceImpl;
     }
 
-    public GuestService getGuestService() {
-        return guestService;
+    public GuestService getGuestServiceImpl() {
+        return guestServiceImpl;
     }
 
-    public void setGuestService(GuestService guestService) {
-        this.guestService = guestService;
+    public void setGuestServiceImpl(GuestService guestServiceImpl) {
+        this.guestServiceImpl = guestServiceImpl;
     }
 
-    public RoomService getRoomService() {
-        return roomService;
+    public RoomService getRoomServiceImpl() {
+        return roomServiceImpl;
     }
 
-    public ServiceService getServiceService() {
-        return serviceService;
+    public ServiceService getServiceServiceImpl() {
+        return serviceServiceImpl;
     }
+
 }

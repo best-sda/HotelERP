@@ -4,11 +4,13 @@
 
 package com.sda.hotel.backend.service;
 
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Service;
 
 import java.util.List;
 
+@Component
 public interface GuestService {
     Guest save(Guest guest);
 

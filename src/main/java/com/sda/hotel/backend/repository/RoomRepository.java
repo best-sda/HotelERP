@@ -4,10 +4,12 @@
 
 package com.sda.hotel.backend.repository;
 
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;
 
 import java.util.List;
 
+@Component
 public interface RoomRepository {
     Room save(Room guest);
     void delete(int id);

@@ -4,65 +4,71 @@
 
 package com.sda.hotel.backend.service;
 
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.repository.GuestRepisitory;
-import com.sda.hotel.backend.repository.GuestRepisitoryImpl;
 
 import java.util.List;
 
+@Component
 public class GuestServiceImpl implements GuestService {
+    @Autowired(className = "GuestRepositoryImpl")
+    private GuestRepisitory guestRepisitoryImpl;
 
-    private GuestRepisitory guestRepisitory = new GuestRepisitoryImpl();
+    public void setGuestRepisitoryImpl(GuestRepisitory guestRepisitoryImpl) {
+        this.guestRepisitoryImpl = guestRepisitoryImpl;
+    }
 
     @Override
     public Guest save(Guest guest) {
-      return guestRepisitory.save(guest);
+        return guestRepisitoryImpl.save(guest);
     }
 
     @Override
     public List <Guest> findBySurname(String surname) {
-        return guestRepisitory.findBySurname(surname);
+        return guestRepisitoryImpl.findBySurname(surname);
     }
 
     @Override
     public void delete(int id) {
-        guestRepisitory.delete(id);
+        guestRepisitoryImpl.delete(id);
     }
 
     @Override
     public Guest guestWithId(int id) {
-        return guestRepisitory.guestWithId(id);
+        return guestRepisitoryImpl.guestWithId(id);
     }
 
     @Override
     public void setRoomToGuest(Guest guest, Integer roomNumber) {
-        guestRepisitory.setRoomToGuest(guest, roomNumber);
+        guestRepisitoryImpl.setRoomToGuest(guest, roomNumber);
     }
 
     @Override
     public List <Guest> getChekinedGests() {
-        return guestRepisitory.getChelinedGests();
+        return guestRepisitoryImpl.getChelinedGests();
     }
 
     @Override
     public void chekout(Integer idGuest) {
-        guestRepisitory.chekout(idGuest);
+        guestRepisitoryImpl.chekout(idGuest);
     }
 
     @Override
     public void setServiceToGuest(Guest guest, Service service) {
-        guestRepisitory.setServiceToGuest(guest, service);
+        guestRepisitoryImpl.setServiceToGuest(guest, service);
     }
 
     @Override
     public void loadList() {
-        guestRepisitory.loadList();
+        guestRepisitoryImpl.loadList();
     }
 
     @Override
     public void saveList() {
-        guestRepisitory.saveList();
+        guestRepisitoryImpl.saveList();
     }
 
 }

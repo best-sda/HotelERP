@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Random;
 
 public class Person implements Serializable {
-    private Integer id;
+    private Integer personId;
     private String name;
     private String surname;
     private int idCardNumber;
@@ -17,7 +17,7 @@ public class Person implements Serializable {
         this.name = name;
         this.surname = surname;
         this.idCardNumber = idCardNumber;
-        this.id = new Random().nextInt();
+        this.personId = new Random().nextInt();
     }
 
     public String getName() {

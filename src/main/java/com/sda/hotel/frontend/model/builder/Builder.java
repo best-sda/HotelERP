@@ -4,6 +4,7 @@
 
 package com.sda.hotel.frontend.model.builder;
 
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.frontend.model.action.administration.CheckinAction;
 import com.sda.hotel.frontend.model.action.administration.ChekoutAction;
 import com.sda.hotel.frontend.model.action.administration.SetServiceAction;
@@ -23,7 +24,9 @@ import com.sda.hotel.frontend.model.menu.MenuItem;
 
 import java.util.Arrays;
 
+@Component
 public class Builder implements IBuilder {
+
     private Menu rootMenu;
 
     public Builder() {
