@@ -13,9 +13,10 @@ import com.sda.hotel.frontend.view.ViewController;
 import java.util.Scanner;
 
 public class DelRoomAction implements IAction {
+
     @Override
-    public void execute() {
-        RoomService roomService = Application.getInstance().getRoomService();
+    public void execute(Application application) {
+        RoomService roomService = application.getRoomServiceImpl();
         ViewController.getInstance().print("Input room number to delete: ");
         Scanner scanner = new Scanner(System.in);
         Integer roomNumber = scanner.nextInt();

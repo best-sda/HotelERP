@@ -4,6 +4,11 @@
 
 package com.sda.hotel.frontend.model.action;
 
+import com.sda.hotel.backend.Application;
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
+
 public interface IAction {
-    void execute();
+
+    void execute(Application application);
 }

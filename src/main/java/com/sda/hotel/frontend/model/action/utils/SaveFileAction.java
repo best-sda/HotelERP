@@ -10,9 +10,11 @@ import com.sda.hotel.backend.service.UtilsServiceImpl;
 import com.sda.hotel.frontend.model.action.IAction;
 
 public class SaveFileAction implements IAction {
+
     @Override
-    public void execute() {
+    public void execute(Application application) {
         UtilsService utilsService = new UtilsServiceImpl();
         utilsService.saveBase();
     }
+
 }

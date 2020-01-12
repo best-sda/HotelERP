@@ -4,16 +4,18 @@
 
 package com.sda.hotel.backend.repository;
 
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
-import com.sda.hotel.backend.utils.Utils;
+import com.sda.hotel.backend.utils.JsonSerialization;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     public List <Guest> getGuests() {
@@ -40,7 +42,7 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     @Override
     public void delete(int id) {
-        Guest toDel = guests.stream().filter(g -> g.getId().equals(id)).findFirst()
+        Guest toDel = guests.stream().filter(g -> g.getGuestId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
         guests.remove(id);
 
@@ -48,7 +50,7 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     @Override
     public Guest guestWithId(int id) {
-        return guests.stream().filter(guest -> guest.getId().equals(id)).findFirst()
+        return guests.stream().filter(guest -> guest.getGuestId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
     }
 
@@ -64,7 +66,7 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     @Override
     public void chekout(Integer idGuest) {
-        guests.stream().filter(guest -> guest.getId().equals(idGuest)).findFirst()
+        guests.stream().filter(guest -> guest.getGuestId().equals(idGuest)).findFirst()
                 .ifPresent(guest -> guest.setRoom(null));
     }
 
@@ -75,12 +77,12 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     @Override
     public void saveList() {
-        Utils.saveList("guestsList.txt", getGuests());
+        JsonSerialization.saveList("guestsList22.txt", getGuests());
     }
 
     @Override
     public void loadList() {
-        Utils.loadList("guestsList.txt", getGuests());
+        JsonSerialization.loadList("guestsList.txt", getGuests());
     }
 
 }

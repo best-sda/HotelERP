@@ -15,20 +15,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShowGuestAction implements IAction {
+
     @Override
-    public void execute() {
+    public void execute(Application application) {
         ViewController.getInstance().print("Input guest surname to delete: ");
         Scanner scanner = new Scanner(System.in);
 
         try {
             String surname = scanner.nextLine();
 
-            GuestService guestService = Application.getInstance().getGuestService();
+            GuestService guestService = application.getGuestServiceImpl();
             List <Guest> guests = guestService.findBySurname(surname);
             if (guests.isEmpty()) {
                 ViewController.getInstance().print("not found");
             } else {
-                guests.forEach(guest -> ViewController.getInstance().print("ID: " + guest.getId()
+                guests.forEach(guest -> ViewController.getInstance().print("ID: " + guest.getGuestId()
                         + " " + guest.getName() + " " + guest.getSurname()));
             }
         } catch (EntityNotFoundExeption e) {

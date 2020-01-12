@@ -5,22 +5,21 @@
 package com.sda.hotel.backend.domain;
 
 import java.io.Serializable;
-import java.security.PublicKey;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 public class Guest extends Person implements Serializable {
-    private Integer id;
+    private Integer guestId;
     private Integer room;
     private List <Service> choosedServices = new ArrayList <>();
 
-    public Integer getId() {
-        return id;
+    public Integer getGuestId() {
+        return guestId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setGuestId(Integer guestId) {
+        this.guestId = guestId;
     }
 
     public Integer getRoom() {
@@ -45,6 +44,6 @@ public class Guest extends Person implements Serializable {
 
     public Guest(String name, String surName, int idCard) {
         super(name, surName, idCard);
-        this.id = new Random().nextInt();
+        this.guestId = new Random().nextInt();
     }
 }

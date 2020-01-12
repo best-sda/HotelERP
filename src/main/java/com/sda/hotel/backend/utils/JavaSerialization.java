@@ -8,22 +8,11 @@
 
 package com.sda.hotel.backend.utils;
 
-import com.sda.hotel.backend.domain.Administrator;
-
 import java.io.*;
 import java.util.Collection;
 import java.util.List;
-import java.util.Properties;
 
-public class Utils {
-
-//    public static void save() {
-//        Administrator administrator = Administrator.getInstance();
-//        saveList("serviceList.txt", administrator.getServiceList());
-//        saveList("roomList.txt", administrator.getRoomList());
-//        saveList("guestList.txt", administrator.getGuestList());
-//    }
-
+public class JavaSerialization {
 
     public static <T> void saveList(String path, List <T> o) {
         try (FileOutputStream fos = new FileOutputStream(path); ObjectOutputStream oos = new ObjectOutputStream(fos)) {
@@ -32,8 +21,6 @@ public class Utils {
             e.printStackTrace();
         }
     }
-
-
 
     public static <E> void loadList(String path, List <E> list) {
         try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(path))) {

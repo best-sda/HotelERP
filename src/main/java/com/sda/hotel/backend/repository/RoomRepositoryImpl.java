@@ -4,16 +4,19 @@
 
 package com.sda.hotel.backend.repository;
 
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
-import com.sda.hotel.backend.utils.Utils;
+import com.sda.hotel.backend.utils.JsonSerialization;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class RoomRepositoryImpl implements RoomRepository, Serializable {
     private List<Room> rooms = new ArrayList<>();
+
     @Override
     public Room save(Room guest) {
         rooms.add(guest);
@@ -48,12 +51,12 @@ public class RoomRepositoryImpl implements RoomRepository, Serializable {
 
     @Override
     public void saveList() {
-        Utils.saveList("roomList.txt", roomList());
+        JsonSerialization.saveList("roomList.txt", roomList());
     }
 
     @Override
     public void loadList() {
-        Utils.loadList("roomList.txt", roomList());
+        JsonSerialization.loadList("roomList.txt", roomList());
     }
 
 }

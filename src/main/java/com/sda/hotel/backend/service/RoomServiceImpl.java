@@ -4,29 +4,35 @@
 
 package com.sda.hotel.backend.service;
 
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;
 import com.sda.hotel.backend.repository.RoomRepository;
-import com.sda.hotel.backend.repository.RoomRepositoryImpl;
 
 import java.util.List;
 
+@Component
 public class RoomServiceImpl implements RoomService {
+    @Autowired
+    private RoomRepository roomRepositoryImpl;
 
-    private RoomRepository roomRepository = new RoomRepositoryImpl();
+    public void setRoomRepositoryImpl(RoomRepository roomRepositoryImpl) {
+        this.roomRepositoryImpl = roomRepositoryImpl;
+    }
 
     @Override
     public Room save(Room room) {
-        return roomRepository.save(room);
+        return roomRepositoryImpl.save(room);
     }
 
     @Override
     public List <Room> roomList() {
-        return roomRepository.roomList();
+        return roomRepositoryImpl.roomList();
     }
 
     @Override
     public void delete(int id) {
-        roomRepository.delete(id);
+        roomRepositoryImpl.delete(id);
     }
 
     @Override
@@ -36,26 +42,26 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room roomWithId(int id) {
-        return roomRepository.roomWithId(id);
+        return roomRepositoryImpl.roomWithId(id);
     }
 
     @Override
     public void setRoomBusy(Room room) {
-        roomRepository.setRoomBusy(room);
+        roomRepositoryImpl.setRoomBusy(room);
     }
 
     @Override
     public void chekoutGuest(Integer guestId) {
-        roomRepository.chekoutGuest(guestId);
+        roomRepositoryImpl.chekoutGuest(guestId);
     }
 
     @Override
     public void loadList() {
-        roomRepository.loadList();
+        roomRepositoryImpl.loadList();
     }
 
     @Override
     public void saveList() {
-        roomRepository.saveList();
+        roomRepositoryImpl.saveList();
     }
 }

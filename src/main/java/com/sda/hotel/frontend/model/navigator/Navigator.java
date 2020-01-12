@@ -4,8 +4,10 @@
 
 package com.sda.hotel.frontend.model.navigator;
 
+import com.sda.hotel.backend.Application;
+import com.sda.hotel.backend.annotation.Autowired;
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.frontend.exeption.MenuExeption;
-import com.sda.hotel.frontend.model.action.IAction;
 import com.sda.hotel.frontend.model.menu.Menu;
 import com.sda.hotel.frontend.model.menu.MenuItem;
 import com.sda.hotel.frontend.view.ViewController;
@@ -13,8 +15,16 @@ import com.sda.hotel.frontend.view.ViewController;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+@Component
 public class Navigator implements Inavigator {
     private Menu curentMenu;
+
+    @Autowired
+    Application application;
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
 
     @Override
     public Menu getCurentMenu() {
@@ -38,7 +48,7 @@ public class Navigator implements Inavigator {
             throw  new MenuExeption("invalide index");
         }
         MenuItem submenu = curentMenu.getItems().get(index);
-        Optional.ofNullable(submenu.getAction()).ifPresent(IAction::execute);
+        Optional.ofNullable(submenu.getAction()).ifPresent(iAction -> iAction.execute(application));
         curentMenu = submenu.getNextMenu();
     }
 }

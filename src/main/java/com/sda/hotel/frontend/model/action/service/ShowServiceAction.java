@@ -5,6 +5,7 @@
 package com.sda.hotel.frontend.model.action.service;
 
 import com.sda.hotel.backend.Application;
+import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.domain.Service;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
 import com.sda.hotel.backend.service.ServiceService;
@@ -15,20 +16,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShowServiceAction implements IAction {
+
     @Override
-    public void execute() {
+    public void execute(Application application) {
         ViewController.getInstance().print("Input service name to delete: ");
         Scanner scanner = new Scanner(System.in);
 
         try {
             String name = scanner.nextLine();
 
-            ServiceService serviceService = Application.getInstance().getServiceService();
+            ServiceService serviceService = application.getServiceServiceImpl();
             List <Service> services = serviceService.findByName(name);
             if (services.isEmpty()){
                 ViewController.getInstance().print("not found");
             }else {
-                services.forEach(service -> ViewController.getInstance().print("ID: " + service.getId()
+                services.forEach(service -> ViewController.getInstance().print("ID: " + service.getServiceId()
                         + " " + service.getServiceName() + " " + service.getDescription()));
             }
 
@@ -36,4 +38,5 @@ public class ShowServiceAction implements IAction {
             ViewController.getInstance().print("Service not found" + e.getId());
         }
     }
+
 }
