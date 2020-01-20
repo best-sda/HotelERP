@@ -12,7 +12,6 @@ import com.sda.hotel.frontend.controller.MenuController;
 public class Main {
     public static void main(String[] args) {
         BeanFactory beanFactory = BeanFactory.getInstance();
-        beanFactory.instantiate("com.sda.hotel.repository");
         beanFactory.instantiate("com.sda.hotel");
         beanFactory.populateProperties();
         MenuController controller = (MenuController) beanFactory.getBean("menuController");
