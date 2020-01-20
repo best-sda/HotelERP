@@ -17,6 +17,14 @@ import java.util.List;
 public class RoomRepositoryImpl implements RoomRepository, Serializable {
     private List<Room> rooms = new ArrayList<>();
 
+    public List <Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List <Room> rooms) {
+        this.rooms = rooms;
+    }
+
     @Override
     public Room save(Room guest) {
         rooms.add(guest);
@@ -58,5 +66,6 @@ public class RoomRepositoryImpl implements RoomRepository, Serializable {
     public void loadList() {
         JsonSerialization.loadList("roomList.txt", roomList());
     }
+
 
 }

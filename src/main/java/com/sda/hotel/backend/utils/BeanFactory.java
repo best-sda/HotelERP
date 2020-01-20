@@ -16,6 +16,31 @@ import java.util.Map;
 import java.util.Set;
 
 public class BeanFactory {
+    public  static BeanFactory instance;
+
+    public Map <String, Object> getSingletons() {
+        return singletons;
+    }
+
+    public void setSingletons(Map <String, Object> singletons) {
+        this.singletons = singletons;
+    }
+
+    private BeanFactory() {
+    }
+
+
+    public static BeanFactory getInstance() {
+        if (instance == null){
+            instance = new BeanFactory();
+        }
+        return instance;
+    }
+
+    public static void setInstance(BeanFactory instance) {
+        BeanFactory.instance = instance;
+    }
+
     private Map <String, Object> singletons = new HashMap();
 
     public Object getBean(String beanName) {

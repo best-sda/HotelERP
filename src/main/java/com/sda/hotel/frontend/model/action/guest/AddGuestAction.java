@@ -9,16 +9,19 @@ import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.service.GuestService;
+import com.sda.hotel.backend.utils.BeanFactory;
+import com.sda.hotel.frontend.model.action.ActionNewThred;
 import com.sda.hotel.frontend.model.action.IAction;
 import com.sda.hotel.frontend.view.ViewController;
 
 import java.util.Scanner;
 
 @Component
-public class AddGuestAction implements IAction {
+public class AddGuestAction extends ActionNewThred {
 
     @Override
-    public void execute(Application application) {
+    public void execute() {
+        Application application = (Application) BeanFactory.getInstance().getBean("application");
         ViewController.getInstance().print("Input guest info: ");
         Scanner scanner = new Scanner(System.in);
         ViewController.getInstance().print("Input guest name: ");

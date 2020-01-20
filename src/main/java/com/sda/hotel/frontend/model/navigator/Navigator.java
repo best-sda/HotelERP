@@ -8,6 +8,7 @@ import com.sda.hotel.backend.Application;
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.frontend.exeption.MenuExeption;
+import com.sda.hotel.frontend.model.action.IAction;
 import com.sda.hotel.frontend.model.menu.Menu;
 import com.sda.hotel.frontend.model.menu.MenuItem;
 import com.sda.hotel.frontend.view.ViewController;
@@ -21,6 +22,8 @@ public class Navigator implements Inavigator {
 
     @Autowired
     Application application;
+
+    IAction action;
 
     public void setApplication(Application application) {
         this.application = application;
@@ -44,11 +47,20 @@ public class Navigator implements Inavigator {
 
     @Override
     public void navigate(Integer index) throws MenuExeption {
-        if (index < 0 || index > curentMenu.getItems().size()){
-            throw  new MenuExeption("invalide index");
+        if (index < 0 || index > curentMenu.getItems().size()) {
+            throw new MenuExeption("invalide index");
         }
         MenuItem submenu = curentMenu.getItems().get(index);
-        Optional.ofNullable(submenu.getAction()).ifPresent(iAction -> iAction.execute(application));
+        if (Optional.ofNullable(submenu.getAction()).isPresent()) {
+            try {
+                action =  submenu.getAction();
+                Thread thread = new Thread((Runnable) action);
+                thread.start();
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         curentMenu = submenu.getNextMenu();
     }
 }

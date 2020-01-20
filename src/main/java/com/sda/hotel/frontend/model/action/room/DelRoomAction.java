@@ -7,15 +7,18 @@ package com.sda.hotel.frontend.model.action.room;
 import com.sda.hotel.backend.Application;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
 import com.sda.hotel.backend.service.RoomService;
+import com.sda.hotel.backend.utils.BeanFactory;
+import com.sda.hotel.frontend.model.action.ActionNewThred;
 import com.sda.hotel.frontend.model.action.IAction;
 import com.sda.hotel.frontend.view.ViewController;
 
 import java.util.Scanner;
 
-public class DelRoomAction implements IAction {
+public class DelRoomAction extends ActionNewThred {
 
     @Override
-    public void execute(Application application) {
+    public void execute() {
+        Application application = (Application) BeanFactory.getInstance().getBean("application");
         RoomService roomService = application.getRoomServiceImpl();
         ViewController.getInstance().print("Input room number to delete: ");
         Scanner scanner = new Scanner(System.in);

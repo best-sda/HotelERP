@@ -10,5 +10,6 @@ import com.sda.hotel.backend.annotation.Component;
 
 public interface IAction {
 
-    void execute(Application application);
+    void execute();
+
 }

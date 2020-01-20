@@ -17,6 +17,10 @@ public class GuestServiceImpl implements GuestService {
     @Autowired(className = "GuestRepositoryImpl")
     private GuestRepisitory guestRepisitoryImpl;
 
+    public GuestRepisitory getGuestRepisitoryImpl() {
+        return guestRepisitoryImpl;
+    }
+
     public void setGuestRepisitoryImpl(GuestRepisitory guestRepisitoryImpl) {
         this.guestRepisitoryImpl = guestRepisitoryImpl;
     }
