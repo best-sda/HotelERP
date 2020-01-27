@@ -56,7 +56,9 @@ public class Navigator implements Inavigator {
                 action =  submenu.getAction();
                 Thread thread = new Thread((Runnable) action);
                 thread.start();
-                thread.join();
+                if (thread.isInterrupted()) {
+                    thread.join();
+                }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

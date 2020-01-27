@@ -15,7 +15,8 @@ public class Main {
         beanFactory.instantiate("com.sda.hotel");
         beanFactory.populateProperties();
         MenuController controller = (MenuController) beanFactory.getBean("menuController");
-        EmailController emailController = (EmailController) beanFactory.getBean("emailController") ;
+        EmailController emailController = (EmailController) beanFactory.getBean("emailController");
+        Thread.currentThread().setName("mainThread");
         emailController.start();
         controller.run();
 

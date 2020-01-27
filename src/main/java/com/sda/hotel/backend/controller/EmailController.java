@@ -51,16 +51,24 @@ public class EmailController extends Thread {
 
     public void run() {
         synchronized (this) {
-            while (!isInterrupted()) {
-                try {
-                    this.wait(TIME);
+            try {
+                while (!Thread.interrupted()) {
+
+                    Thread.currentThread().setName("emailController");
+                   try{
+                       this.wait(TIME);
+                   } catch (InterruptedException e) {
+                   }
+
                     this.sendMail();
                     System.out.println("send");
 
-                } catch (InterruptedException | IOException | MessagingException e) {
-                    e.printStackTrace();
                 }
-            }
+            }catch( IOException | MessagingException e){
+                    e.printStackTrace();
+             }
+
+
         }
     }
 

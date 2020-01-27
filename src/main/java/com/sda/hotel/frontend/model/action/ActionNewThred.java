@@ -14,7 +14,9 @@ public abstract class ActionNewThred extends Thread implements IAction {
 
     public void run() {
         synchronized (this) {
-            this.execute();
+            if (!Thread.interrupted()) {
+                this.execute();
+            }
         }
     }
 

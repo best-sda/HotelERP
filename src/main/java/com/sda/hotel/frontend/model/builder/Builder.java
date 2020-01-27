@@ -17,6 +17,7 @@ import com.sda.hotel.frontend.model.action.room.ShowRoomAction;
 import com.sda.hotel.frontend.model.action.service.AddServiceAction;
 import com.sda.hotel.frontend.model.action.service.DelServiceAction;
 import com.sda.hotel.frontend.model.action.service.ShowServiceAction;
+import com.sda.hotel.frontend.model.action.utils.ExitAction;
 import com.sda.hotel.frontend.model.action.utils.LoadFileAction;
 import com.sda.hotel.frontend.model.action.utils.SaveFileAction;
 import com.sda.hotel.frontend.model.action.utils.StopMessagingAction;
@@ -55,6 +56,7 @@ public class Builder implements IBuilder {
         MenuItem loadFileItem = new MenuItem("Load base", rootMenu, new LoadFileAction());
         MenuItem saveFileItem = new MenuItem("Save base", rootMenu, new SaveFileAction());
 
+        MenuItem exitItem = new MenuItem("Exit", rootMenu, new ExitAction());
         MenuItem stopMessegingItem = new MenuItem("Stop messeging", rootMenu, new StopMessagingAction());
 
         Menu roomMenu = new Menu("Rooom", Arrays.asList(addRoomItem, deleteRoomItem, showAllRoomItem));
@@ -62,14 +64,14 @@ public class Builder implements IBuilder {
         Menu serviceMenu = new Menu("Service", Arrays.asList(addServiceItem, deleteServiceItem, showServiceItem));
         Menu administrationMenu = new Menu("administration", Arrays.asList(checkinItem, setServiceItem, cancelRegistrationItem));
         Menu saveMenu = new Menu("Save/Load", Arrays.asList(loadFileItem, saveFileItem));
-        Menu stopSpamMenu = new Menu("Email sender", Arrays.asList(stopMessegingItem));
+        Menu exitMenu = new Menu("Exit", Arrays.asList(exitItem, stopMessegingItem));
 
         rootMenu.addItem(new MenuItem(roomMenu.getName(), roomMenu, null));
         rootMenu.addItem(new MenuItem(guestMenu.getName(), guestMenu, null));
         rootMenu.addItem(new MenuItem(serviceMenu.getName(), serviceMenu, null));
         rootMenu.addItem(new MenuItem(administrationMenu.getName(), administrationMenu, null));
         rootMenu.addItem(new MenuItem(saveMenu.getName(), saveMenu, null));
-        rootMenu.addItem(new MenuItem(stopSpamMenu.getName(), stopSpamMenu, null));
+        rootMenu.addItem(new MenuItem(exitMenu.getName(), exitMenu, null));
 
         return rootMenu;
     }
