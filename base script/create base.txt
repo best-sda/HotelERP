@@ -1,0 +1,73 @@
+create database hotel;
+
+create schema hotel_base;
+
+create table hotel.Room
+(
+	id serial not null,
+	room_number int,
+	status varchar,
+	bizy boolean not null
+);
+
+comment on table hotel.Room is 'Tabele with hotel rooms   ';
+
+create unique index Room_id_uindex
+	on hotel.Room (id);
+
+alter table hotel.Room
+	add constraint Room_pk
+		primary key (id);
+
+create table hotel.guest
+(
+	id serial not null,
+	last_name varchar not null,
+	first_name varchar not null,
+	cert_number int not null,
+	phone_number varchar
+);
+
+create unique index guest_id_uindex
+	on hotel.guest (id);
+
+alter table hotel.guest
+	add constraint guest_pk
+		primary key (id);
+
+create table hotel.service
+(
+	id serial not null,
+	name varchar not null,
+	description varchar,
+	cost_service varchar not null
+);
+
+create unique index service_id_uindex
+	on hotel.service (id);
+
+alter table hotel.service
+	add constraint service_pk
+		primary key (id);
+
+create table hotel._order
+(
+    id          serial not null,
+    date_arival date,
+    date_depart date,
+    column_4    int,
+    id_room     int    not null,
+    id_guest    int    not null,
+    id_service  int    not null,
+    constraint guest_id
+        foreign key (id_guest) references hotel.guest,
+    constraint room_id
+        foreign key (id_room) references hotel.room,
+    constraint service_id
+        foreign key (id_service) references hotel.service
+);
+
+
+alter table hotel._order rename column column_4 to paid;
+
+alter table hotel._order alter column paid type boolean using paid::boolean;
