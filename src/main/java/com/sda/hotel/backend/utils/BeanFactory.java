@@ -15,14 +15,14 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-public class BeanFactory {
-    public  static BeanFactory instance;
+public final class BeanFactory {
+    private static BeanFactory instance;
 
-    public Map <String, Object> getSingletons() {
+    public Map<String, Object> getSingletons() {
         return singletons;
     }
 
-    public void setSingletons(Map <String, Object> singletons) {
+    public void setSingletons(Map<String, Object> singletons) {
         this.singletons = singletons;
     }
 
@@ -31,7 +31,7 @@ public class BeanFactory {
 
 
     public static BeanFactory getInstance() {
-        if (instance == null){
+        if (instance == null) {
             instance = new BeanFactory();
         }
         return instance;
@@ -41,7 +41,7 @@ public class BeanFactory {
         BeanFactory.instance = instance;
     }
 
-    private Map <String, Object> singletons = new HashMap();
+    private Map<String, Object> singletons = new HashMap();
 
     public Object getBean(String beanName) {
         return singletons.get(beanName);
@@ -50,8 +50,8 @@ public class BeanFactory {
     public void instantiate(String basePackage) {
         Reflections reflections = new Reflections(basePackage);
 
-        Set <Class <?>> annotated = reflections.getTypesAnnotatedWith(Component.class);
-
+        Set<Class<?>> annotated = reflections
+                .getTypesAnnotatedWith(Component.class);
         for (Class classObject : annotated) {
             if (!classObject.isInterface()) {
                 // System.out.println("Component: " + classObject);
@@ -61,7 +61,9 @@ public class BeanFactory {
                 } catch (InstantiationException | IllegalAccessException e) {
                     e.printStackTrace();
                 }
-                String beanName = classObject.getSimpleName().substring(0, 1).toLowerCase() + classObject.getSimpleName().substring(1);
+                String beanName = classObject.getSimpleName()
+                        .substring(0, 1).toLowerCase()
+                        + classObject.getSimpleName().substring(1);
                 singletons.put(beanName, instance);
             }
 
@@ -77,14 +79,19 @@ public class BeanFactory {
 
                         if (dependency.equals(field.getName())) {
                             try {
-                                String setterName = "set" + field.getName().substring(0, 1).toUpperCase() + field.getName().substring(1);
-                                //System.out.println("Setter name = " + setterName);
+                                String setterName = "set" + field.getName()
+                                        .substring(0, 1).toUpperCase()
+                                        + field.getName().substring(1);
                                 Object instance = singletons.get(dependency);
-                                if (dependency.getClass().isInterface()) {
+                                if (!dependency.getClass().isInterface()) {
+                                    Method setter = object.getClass()
+                                    .getMethod(setterName, field.getType());
+                                    setter.invoke(object,
+                                            singletons.get(dependency));
                                 }
-                                Method setter = object.getClass().getMethod(setterName, field.getType());
-                                setter.invoke(object, singletons.get(dependency));
-                            } catch (NoSuchMethodException | InvocationTargetException | IllegalAccessException e) {
+                            } catch (NoSuchMethodException
+                                    | InvocationTargetException
+                                    | IllegalAccessException e) {
                                 e.printStackTrace();
                             }
                         }

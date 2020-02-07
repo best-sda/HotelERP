@@ -12,7 +12,7 @@ import java.util.Random;
 public class Guest extends Person implements Serializable {
     private Integer guestId;
     private Integer room;
-    private List <Service> choosedServices = new ArrayList <>();
+    private List<Service> choosedServices = new ArrayList<>();
 
     public Integer getGuestId() {
         return guestId;
@@ -30,15 +30,15 @@ public class Guest extends Person implements Serializable {
         this.room = room;
     }
 
-    public List <Service> getChoosedServices() {
+    public List<Service> getChoosedServices() {
         return choosedServices;
     }
 
-    public void setChoosedServices(List <Service> choosedServices) {
+    public void setChoosedServices(List<Service> choosedServices) {
         this.choosedServices = choosedServices;
     }
 
-    public void addService (Service service) {
+    public void addService(Service service) {
         choosedServices.add(service);
     }
 

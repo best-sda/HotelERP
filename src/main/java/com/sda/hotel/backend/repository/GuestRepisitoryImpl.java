@@ -18,20 +18,22 @@ import java.util.stream.Collectors;
 @Component
 public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
-    public List <Guest> getGuests() {
+    public List<Guest> getGuests() {
         return guests;
     }
 
-    public void setGuests(List <Guest> guests) {
+    public void setGuests(List<Guest> guests) {
         this.guests = guests;
     }
 
     private List<Guest> guests = new ArrayList<>();
 
     @Override
-    public List <Guest> findBySurname(String surname) {
-            return guests.stream().filter(g -> surname != null && g.getSurname().toUpperCase()
-                    .startsWith(surname.toUpperCase())).collect(Collectors.toList());
+    public List<Guest> findBySurname(String surname) {
+            return guests.stream().filter(g ->
+                    surname != null && g.getSurname().toUpperCase()
+                    .startsWith(surname.toUpperCase()))
+                    .collect(Collectors.toList());
     }
 
     @Override
@@ -42,7 +44,8 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     @Override
     public void delete(int id) {
-        Guest toDel = guests.stream().filter(g -> g.getGuestId().equals(id)).findFirst()
+        Guest toDel = guests.stream().filter(g ->
+                g.getGuestId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
         guests.remove(id);
 
@@ -50,7 +53,8 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     @Override
     public Guest guestWithId(int id) {
-        return guests.stream().filter(guest -> guest.getGuestId().equals(id)).findFirst()
+        return guests.stream().filter(guest ->
+                guest.getGuestId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
     }
 
@@ -60,13 +64,15 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
     }
 
     @Override
-    public List <Guest> getChelinedGests() {
-        return guests.stream().filter(guest -> guest.getRoom() != null).collect(Collectors.toList());
+    public List<Guest> getChelinedGests() {
+        return guests.stream().filter(guest ->
+                guest.getRoom() != null).collect(Collectors.toList());
     }
 
     @Override
     public void chekout(Integer idGuest) {
-        guests.stream().filter(guest -> guest.getGuestId().equals(idGuest)).findFirst()
+        guests.stream().filter(guest ->
+                guest.getGuestId().equals(idGuest)).findFirst()
                 .ifPresent(guest -> guest.setRoom(null));
     }
 
@@ -82,7 +88,7 @@ public class GuestRepisitoryImpl implements GuestRepisitory, Serializable {
 
     @Override
     public void loadList() {
-        JsonSerialization.loadList("guestsList.txt", getGuests());
+        JsonSerialization.loadList("guestsList.txt");
     }
 
 }

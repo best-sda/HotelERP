@@ -17,11 +17,11 @@ import java.util.List;
 public class RoomRepositoryImpl implements RoomRepository, Serializable {
     private List<Room> rooms = new ArrayList<>();
 
-    public List <Room> getRooms() {
+    public List<Room> getRooms() {
         return rooms;
     }
 
-    public void setRooms(List <Room> rooms) {
+    public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
     }
 
@@ -37,13 +37,14 @@ public class RoomRepositoryImpl implements RoomRepository, Serializable {
     }
 
     @Override
-    public List <Room> roomList() {
+    public List<Room> roomList() {
         return rooms;
     }
 
     @Override
     public Room roomWithId(Integer id) {
-        return rooms.stream().filter(room -> room.getNumber().equals(id)).findFirst()
+        return rooms.stream().filter(room ->
+                room.getNumber().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
     }
 
@@ -64,8 +65,7 @@ public class RoomRepositoryImpl implements RoomRepository, Serializable {
 
     @Override
     public void loadList() {
-        JsonSerialization.loadList("roomList.txt", roomList());
+        JsonSerialization.loadList("roomList.txt");
     }
-
 
 }

@@ -30,7 +30,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List <Room> roomList() {
+    public List<Room> roomList() {
         return roomRepositoryImpl.roomList();
     }
 
@@ -40,7 +40,7 @@ public class RoomServiceImpl implements RoomService {
     }
 
     @Override
-    public List <Room> showRooms() {
+    public List<Room> showRooms() {
         return null;
     }
 

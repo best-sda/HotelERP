@@ -5,8 +5,6 @@
 package com.sda.hotel.frontend.model.action.administration;
 
 import com.sda.hotel.backend.Application;
-import com.sda.hotel.backend.annotation.Autowired;
-import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Room;
 import com.sda.hotel.backend.exeption.EntityNotFoundExeption;
@@ -14,39 +12,40 @@ import com.sda.hotel.backend.service.GuestService;
 import com.sda.hotel.backend.service.RoomService;
 import com.sda.hotel.backend.utils.BeanFactory;
 import com.sda.hotel.frontend.model.action.ActionNewThred;
-import com.sda.hotel.frontend.model.action.IAction;
 import com.sda.hotel.frontend.view.ViewController;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class CheckinAction extends ActionNewThred {
-
     @Override
     public void execute() {
         ViewController.getInstance().print("Input guest surname to checkin: ");
         Scanner scanner = new Scanner(System.in);
-        Application application = (Application) BeanFactory.getInstance().getBean("application");
+        Application application = (Application) BeanFactory
+                .getInstance().getBean("application");
         try {
             String surname = scanner.nextLine();
             GuestService guestService = application.getGuestServiceImpl();
-            List <Guest> guests = guestService.findBySurname(surname);
+            List<Guest> guests = guestService.findBySurname(surname);
             if (guests.isEmpty()) {
                 ViewController.getInstance().print("not found");
             } else {
-                guests.forEach(guest -> ViewController.getInstance().print("ID: " + guest.getGuestId()
+                guests.forEach(guest -> ViewController.getInstance()
+                        .print("ID: " + guest.getGuestId()
                         + " " + guest.getName() + " " + guest.getSurname()));
                 ViewController.getInstance().print("Input number to checkin");
-
                 Guest guest = guestService.guestWithId(scanner.nextInt());
-
                 RoomService roomService = application.getRoomServiceImpl();
-                List <Room> rooms = roomService.roomList();
-                rooms.stream().forEach(room -> ViewController.getInstance().print("Room number: " + room.getNumber() + " cost:" + room.getCost()));
+                List<Room> rooms = roomService.roomList();
+                rooms.forEach(room ->
+                        ViewController.getInstance().print("Room number: "
+                               + room.getNumber() + " cost:" + room.getCost()));
                 if (!rooms.isEmpty()) {
-                    ViewController.getInstance().print("Input number to checkin");
-                    Room room = roomService.roomWithId(scanner.nextInt());
-
+                    ViewController.getInstance()
+                            .print("Input number to checkin");
+                    Room room = roomService
+                            .roomWithId(scanner.nextInt());
                     roomService.setRoomBusy(room);
                     guestService.setRoomToGuest(guest, room.getNumber());
 
@@ -57,7 +56,8 @@ public class CheckinAction extends ActionNewThred {
             }
 
         } catch (EntityNotFoundExeption e) {
-            ViewController.getInstance().print("Guest/room not found" + e.getId());
+            ViewController.getInstance()
+                    .print("Guest/room not found" + e.getId());
         }
     }
 

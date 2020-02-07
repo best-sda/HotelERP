@@ -13,7 +13,8 @@ public class Room implements Serializable {
     private Boolean busy;
     private int cost;
 
-    public Room(Integer number, String status, Boolean repair, Boolean busy, int cost) {
+    public Room(Integer number, String status,
+                Boolean repair, Boolean busy, int cost) {
         this.number = number;
         this.status = status;
         this.repair = repair;
@@ -21,7 +22,7 @@ public class Room implements Serializable {
         this.cost = cost;
     }
 
-    public Room(Integer number, String status , int cost) {
+    public Room(Integer number, String status, int cost) {
         this.number = number;
         this.status = status;
         this.repair = false;

@@ -11,8 +11,12 @@ import com.google.gson.reflect.TypeToken;
 import java.io.*;
 import java.util.List;
 
-public class JsonSerialization {
-    public static <T> void saveList(String path, List <T> o) {
+public final class JsonSerialization {
+
+    private JsonSerialization() {
+    }
+
+    public static <T> void saveList(String path, List<T> o) {
         try (Writer writer = new FileWriter(path)) {
             Gson gson = new GsonBuilder().create();
             gson.toJson(o, writer);
@@ -23,9 +27,9 @@ public class JsonSerialization {
         }
     }
 
-    public static <E> void loadList(String path, List <E> list) {
+    public  static <E> void loadList(String path) {
         try (Reader reader = new FileReader(path)) {
-            list = new Gson().fromJson(reader, new TypeToken <List <E>>() {
+            List<E> list = new Gson().fromJson(reader, new TypeToken<List<E>>() {
             }.getType());
         } catch (IOException e) {
             e.printStackTrace();

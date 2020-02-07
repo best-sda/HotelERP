@@ -31,7 +31,7 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
-    public List <Guest> findBySurname(String surname) {
+    public List<Guest> findBySurname(String surname) {
         return guestRepisitoryImpl.findBySurname(surname);
     }
 
@@ -51,7 +51,7 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
-    public List <Guest> getChekinedGests() {
+    public List<Guest> getChekinedGests() {
         return guestRepisitoryImpl.getChelinedGests();
     }
 

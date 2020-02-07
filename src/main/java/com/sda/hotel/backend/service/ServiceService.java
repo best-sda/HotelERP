@@ -13,7 +13,7 @@ import java.util.List;
 public interface ServiceService {
     Service save(Service service);
 
-    List <Service> findByName(String name);
+    List<Service> findByName(String name);
 
     void delete(int id);
 

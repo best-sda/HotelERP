@@ -13,17 +13,17 @@ import com.sda.hotel.backend.service.ServiceService;
 @Component
 public class Application {
     @Autowired
-    private GuestService guestServiceImpl;
+    private  GuestService guestServiceImpl;
     @Autowired
     private RoomService roomServiceImpl;
     @Autowired
     private ServiceService serviceServiceImpl;
 
-    public void setRoomServiceImpl(RoomService roomServiceImpl) {
+    public void setRoomServiceImpl(final RoomService roomServiceImpl) {
         this.roomServiceImpl = roomServiceImpl;
     }
 
-    public void setServiceServiceImpl(ServiceService serviceServiceImpl) {
+    public void setServiceServiceImpl(final ServiceService serviceServiceImpl) {
         this.serviceServiceImpl = serviceServiceImpl;
     }
 
@@ -31,7 +31,7 @@ public class Application {
         return guestServiceImpl;
     }
 
-    public void setGuestServiceImpl(GuestService guestServiceImpl) {
+    public void setGuestServiceImpl(final GuestService guestServiceImpl) {
         this.guestServiceImpl = guestServiceImpl;
     }
 

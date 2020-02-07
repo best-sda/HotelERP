@@ -26,7 +26,7 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public List <Service> findByName(String name) {
+    public List<Service> findByName(String name) {
         return serviceRepository.findByName(name);
     }
 

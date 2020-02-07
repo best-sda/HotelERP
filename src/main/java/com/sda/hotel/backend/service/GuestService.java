@@ -22,7 +22,7 @@ public interface GuestService {
 
     void setRoomToGuest(Guest guest, Integer roomNumber);
 
-    List <Guest> getChekinedGests();
+    List<Guest> getChekinedGests();
 
     void chekout(Integer idGuest);
 

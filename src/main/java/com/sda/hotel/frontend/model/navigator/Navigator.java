@@ -21,9 +21,9 @@ public class Navigator implements Inavigator {
     private Menu curentMenu;
 
     @Autowired
-    Application application;
+    private Application application;
 
-    IAction action;
+    private IAction action;
 
     public void setApplication(Application application) {
         this.application = application;
@@ -41,8 +41,11 @@ public class Navigator implements Inavigator {
 
     @Override
     public void printMenu() {
-        ViewController.getInstance().print(curentMenu.getName() + "Please, choose->");
-        ViewController.getInstance().printList(curentMenu.getItems().stream().map(MenuItem::getTitle).collect(Collectors.toList()));
+        ViewController.getInstance().print(curentMenu.getName()
+                + "Please, choose->");
+        ViewController.getInstance().printList(curentMenu.getItems()
+                .stream().map(MenuItem::getTitle)
+                .collect(Collectors.toList()));
     }
 
     @Override
@@ -53,7 +56,7 @@ public class Navigator implements Inavigator {
         MenuItem submenu = curentMenu.getItems().get(index);
         if (Optional.ofNullable(submenu.getAction()).isPresent()) {
             try {
-                action =  submenu.getAction();
+                action = submenu.getAction();
                 Thread thread = new Thread((Runnable) action);
                 thread.start();
                 if (thread.isInterrupted()) {

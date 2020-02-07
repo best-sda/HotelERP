@@ -13,7 +13,7 @@ import java.util.List;
 public interface RoomRepository {
     Room save(Room guest);
     void delete(int id);
-    List <Room> roomList();
+    List<Room> roomList();
 
     Room roomWithId(Integer id);
 

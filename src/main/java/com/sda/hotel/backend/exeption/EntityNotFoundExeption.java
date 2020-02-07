@@ -7,7 +7,7 @@ package com.sda.hotel.backend.exeption;
 public class EntityNotFoundExeption extends RuntimeException {
    private Integer id;
 
-    public EntityNotFoundExeption(){
+    public EntityNotFoundExeption() {
         this.id = id;
     }
 

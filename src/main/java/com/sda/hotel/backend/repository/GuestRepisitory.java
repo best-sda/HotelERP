@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 public interface GuestRepisitory {
-    List <Guest> findBySurname(String surname);
+    List<Guest> findBySurname(String surname);
 
     Guest save(Guest guest);
 
@@ -22,7 +22,7 @@ public interface GuestRepisitory {
 
     void setRoomToGuest(Guest guest, Integer roomNumber);
 
-    List <Guest> getChelinedGests();
+    List<Guest> getChelinedGests();
 
     void chekout(Integer idGuest);
 

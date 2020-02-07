@@ -13,11 +13,11 @@ import java.util.List;
 public interface RoomService {
     Room save(Room room);
 
-    List <Room> roomList();
+    List<Room> roomList();
 
     void delete(int id);
 
-    List <Room> showRooms();
+    List<Room> showRooms();
 
     Room roomWithId(int id);
 

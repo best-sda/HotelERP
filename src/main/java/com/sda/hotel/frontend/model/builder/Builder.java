@@ -28,9 +28,7 @@ import java.util.Arrays;
 
 @Component
 public class Builder implements IBuilder {
-
     private Menu rootMenu;
-
     public Builder() {
         rootMenu = new Menu("Root menu", null);
     }
@@ -51,7 +49,7 @@ public class Builder implements IBuilder {
 
         MenuItem checkinItem = new MenuItem("Check-in guests to room", rootMenu, new CheckinAction());
         MenuItem setServiceItem = new MenuItem("Set service to room", rootMenu, new SetServiceAction());
-        MenuItem cancelRegistrationItem = new MenuItem("Сheck-out gusest", rootMenu,new ChekoutAction());
+        MenuItem cancelRegistrationItem = new MenuItem("Сheck-out gusest", rootMenu, new ChekoutAction());
 
         MenuItem loadFileItem = new MenuItem("Load base", rootMenu, new LoadFileAction());
         MenuItem saveFileItem = new MenuItem("Save base", rootMenu, new SaveFileAction());

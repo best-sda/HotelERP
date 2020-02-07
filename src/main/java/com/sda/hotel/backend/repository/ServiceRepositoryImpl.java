@@ -16,11 +16,11 @@ import java.util.stream.Collectors;
 
 @Component
 public class ServiceRepositoryImpl implements ServiceRepository, Serializable {
-    public List <Service> getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
-    public void setServices(List <Service> services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 
@@ -33,21 +33,24 @@ public class ServiceRepositoryImpl implements ServiceRepository, Serializable {
     }
 
     @Override
-    public List <Service> findByName(String name) {
-        return services.stream().filter(services -> name != null && services.getServiceName().startsWith(name))
+    public List<Service> findByName(String name) {
+        return services.stream().filter(services ->
+                name != null && services.getServiceName().startsWith(name))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void delete(int id) {
-        services.stream().filter(service -> service.getServiceId().equals(id)).findFirst()
+        services.stream().filter(service ->
+                service.getServiceId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
         services.remove(id);
     }
 
     @Override
     public Service servicewithId(int id) {
-        return services.stream().filter(service -> service.getServiceId().equals(id)).findFirst()
+        return services.stream().filter(service ->
+                service.getServiceId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
     }
 
@@ -58,6 +61,6 @@ public class ServiceRepositoryImpl implements ServiceRepository, Serializable {
 
     @Override
     public void loadList() {
-        JsonSerialization.loadList("serviceList.txt", getServices());
+        JsonSerialization.loadList("serviceList.txt");
     }
 }

@@ -11,7 +11,7 @@ public class MenuItem {
     private IAction action;
     private Menu nextMenu;
 
-    public MenuItem(String title,Menu nextMenu, IAction action ) {
+    public MenuItem(String title, Menu nextMenu, IAction action) {
         this.title = title;
         this.action = action;
         this.nextMenu = nextMenu;

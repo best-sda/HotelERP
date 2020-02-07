@@ -3,17 +3,14 @@
  */
 
 package com.sda.hotel.frontend.model.action.utils;
-
-import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.controller.EmailController;
 import com.sda.hotel.backend.utils.BeanFactory;
 import com.sda.hotel.frontend.model.action.ActionNewThred;
-import com.sda.hotel.frontend.model.action.IAction;
-
 public class StopMessagingAction extends ActionNewThred {
     @Override
     public void execute() {
-        EmailController emailController = (EmailController) BeanFactory.getInstance().getBean("emailController");
+        EmailController emailController = (EmailController) BeanFactory
+                .getInstance().getBean("emailController");
         emailController.interrupt();
     }
 }

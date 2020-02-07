@@ -12,7 +12,7 @@ public class Menu {
     private String Name;
     private List<MenuItem> items;
 
-    public Menu(String name, List <MenuItem> items) {
+    public Menu(String name, List<MenuItem> items) {
         Name = name;
         this.items = items;
     }
@@ -25,18 +25,19 @@ public class Menu {
         Name = name;
     }
 
-    public List <MenuItem> getItems() {
+    public List<MenuItem> getItems() {
         return items;
     }
 
-    public void setItems(List <MenuItem> items) {
+    public void setItems(List<MenuItem> items) {
         this.items = items;
     }
 
     public void addItem(MenuItem item) {
-        if(items == null){
+        if (items == null) {
             items = new ArrayList<>();
         }
         Optional.ofNullable(items).ifPresent(menuItems -> menuItems.add(item));
     }
+
 }
