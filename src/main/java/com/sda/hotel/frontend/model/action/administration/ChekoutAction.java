@@ -27,13 +27,13 @@ public class ChekoutAction extends ActionNewThred {
             RoomService roomService = application.getRoomServiceImpl();
             List<Guest> guests = guestService.getChekinedGests();
             guests.forEach(guest -> ViewController.getInstance()
-                    .print(guest.getGuestId() + " " + guest.getName() + " "
-                    +  guest.getSurname() + " " + guest.getRoom()));
+                    .print(guest.getId() + " " + guest.getFirstName() + " "
+                    +  guest.getLastName() ));
             Scanner scanner = new Scanner(System.in);
             ViewController.getInstance().print("Chose id guest to checkout: ");
             int guestId = scanner.nextInt();
-            roomService.chekoutGuest(guestService
-                    .guestWithId(guestId).getRoom());
+            //roomService.chekoutGuest(guestService
+            //        .guestWithId(guestId).getRoom());
             guestService.chekout(guestId);
         } catch (EntityNotFoundExeption e) {
             ViewController.getInstance().print("Nothing chekined guests");

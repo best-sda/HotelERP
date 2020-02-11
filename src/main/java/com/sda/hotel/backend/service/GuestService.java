@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 public interface GuestService {
-    Guest save(Guest guest);
+    boolean save(Guest guest);
 
     List<Guest> findBySurname(String surname);
 
@@ -32,4 +32,5 @@ public interface GuestService {
 
     void saveList();
 
+    List<Guest> getList();
 }

@@ -4,8 +4,11 @@
 
 package com.sda.hotel.backend.utils;
 
+import com.sda.hotel.Main;
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.reflections.Reflections;
 
 import java.lang.reflect.Field;
@@ -29,6 +32,7 @@ public final class BeanFactory {
     private BeanFactory() {
     }
 
+    Logger logger = LogManager.getLogger(BeanFactory.class);
 
     public static BeanFactory getInstance() {
         if (instance == null) {
@@ -54,12 +58,12 @@ public final class BeanFactory {
                 .getTypesAnnotatedWith(Component.class);
         for (Class classObject : annotated) {
             if (!classObject.isInterface()) {
-                // System.out.println("Component: " + classObject);
+                logger.info("bean: " + classObject.getName());// System.out.println("Component: " + classObject);
                 Object instance = null;
                 try {
                     instance = classObject.newInstance();
                 } catch (InstantiationException | IllegalAccessException e) {
-                    e.printStackTrace();
+                    logger.error("object not instsnceing " + classObject.getName() + e.getMessage());
                 }
                 String beanName = classObject.getSimpleName()
                         .substring(0, 1).toLowerCase()
@@ -76,23 +80,23 @@ public final class BeanFactory {
             for (Field field : object.getClass().getDeclaredFields()) {
                 if (field.isAnnotationPresent(Autowired.class)) {
                     for (Object dependency : singletons.keySet()) {
-
                         if (dependency.equals(field.getName())) {
                             try {
+                                logger.trace("call set method in " + field.getName());
                                 String setterName = "set" + field.getName()
                                         .substring(0, 1).toUpperCase()
                                         + field.getName().substring(1);
                                 Object instance = singletons.get(dependency);
                                 if (!dependency.getClass().isInterface()) {
                                     Method setter = object.getClass()
-                                    .getMethod(setterName, field.getType());
+                                            .getMethod(setterName, field.getType());
                                     setter.invoke(object,
                                             singletons.get(dependency));
                                 }
                             } catch (NoSuchMethodException
                                     | InvocationTargetException
                                     | IllegalAccessException e) {
-                                e.printStackTrace();
+                                logger.error(e);
                             }
                         }
                     }

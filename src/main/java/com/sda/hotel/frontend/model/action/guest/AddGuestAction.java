@@ -12,6 +12,7 @@ import com.sda.hotel.backend.utils.BeanFactory;
 import com.sda.hotel.frontend.model.action.ActionNewThred;
 import com.sda.hotel.frontend.view.ViewController;
 
+import java.util.Random;
 import java.util.Scanner;
 
 @Component
@@ -22,15 +23,17 @@ public class AddGuestAction extends ActionNewThred {
                 BeanFactory.getInstance().getBean("application");
         ViewController.getInstance().print("Input guest info: ");
         Scanner scanner = new Scanner(System.in);
-        ViewController.getInstance().print("Input guest name: ");
+        ViewController.getInstance().print("Input guest first name: ");
         String name = scanner.nextLine();
-        ViewController.getInstance().print("Input guest surname: ");
+        ViewController.getInstance().print("Input guest last name: ");
         String surname = scanner.nextLine();
         ViewController.getInstance().print("Input guest id card");
-        int id = scanner.nextInt();
+        int idCard = scanner.nextInt();
+        ViewController.getInstance().print("Input guest phone");
+        String phone = scanner.nextLine();
         GuestService guestService = application.getGuestServiceImpl();
-        Guest guest = guestService.save(new Guest(name, surname, id));
+        Boolean guest = guestService.save(new Guest(name, surname, idCard, phone));
         ViewController.getInstance()
-                .print("Guest created with id: " + guest.getGuestId());
+                .print("Guest created: " + guest);
     }
 }

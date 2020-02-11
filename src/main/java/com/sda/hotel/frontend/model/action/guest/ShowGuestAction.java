@@ -26,17 +26,15 @@ public class ShowGuestAction extends ActionNewThred {
         Scanner scanner = new Scanner(System.in);
 
         try {
-            String surname = scanner.nextLine();
-
             GuestService guestService = application
                     .getGuestServiceImpl();
-            List<Guest> guests = guestService.findBySurname(surname);
+            List<Guest> guests = guestService.getList();
             if (guests.isEmpty()) {
                 ViewController.getInstance().print("not found");
             } else {
                 guests.forEach(guest -> ViewController
-                        .getInstance().print("ID: " + guest.getGuestId()
-                        + " " + guest.getName() + " " + guest.getSurname()));
+                        .getInstance().print("ID: " + guest.getId()
+                        + " " + guest.getFirstName() + " " + guest.getLastName()));
             }
         } catch (EntityNotFoundExeption e) {
             ViewController.getInstance().print("Guest not found" + e.getId());

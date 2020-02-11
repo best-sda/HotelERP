@@ -11,14 +11,14 @@ import com.sda.hotel.backend.domain.Service;
 import java.util.List;
 
 @Component
-public interface GuestRepisitory {
+public interface GuestRepisitory   {
     List<Guest> findBySurname(String surname);
 
-    Guest save(Guest guest);
+    boolean save(Guest guest);
 
     void delete(int id);
 
-    Guest guestWithId(int id);
+    Guest findById(int id);
 
     void setRoomToGuest(Guest guest, Integer roomNumber);
 
@@ -31,4 +31,6 @@ public interface GuestRepisitory {
     void saveList();
 
     void loadList();
+
+    List<Guest> getList();
 }

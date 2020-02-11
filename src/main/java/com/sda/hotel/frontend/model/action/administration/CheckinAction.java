@@ -32,8 +32,8 @@ public class CheckinAction extends ActionNewThred {
                 ViewController.getInstance().print("not found");
             } else {
                 guests.forEach(guest -> ViewController.getInstance()
-                        .print("ID: " + guest.getGuestId()
-                        + " " + guest.getName() + " " + guest.getSurname()));
+                        .print("ID: " + guest.getId()
+                        + " " + guest.getFirstName() + " " + guest.getLastName()));
                 ViewController.getInstance().print("Input number to checkin");
                 Guest guest = guestService.guestWithId(scanner.nextInt());
                 RoomService roomService = application.getRoomServiceImpl();

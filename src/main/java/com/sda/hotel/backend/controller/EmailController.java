@@ -8,6 +8,9 @@ import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.service.GuestService;
 import com.sda.hotel.backend.service.RoomService;
 import com.sda.hotel.backend.utils.EmailAutentificator;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -45,25 +48,24 @@ public class EmailController extends Thread {
     public void setRoomServiceImpl(final RoomService roomServiceImpl) {
         this.roomServiceImpl = roomServiceImpl;
     }
-
+    Logger logger = LogManager.getLogger(EmailController.class);
     @Override
     public void run() {
         synchronized (this) {
             try {
                 while (!Thread.interrupted()) {
-
                     Thread.currentThread().setName("emailController");
                     try {
                         this.wait(TIME);
                     } catch (InterruptedException e) {
+                        logger.info("thread wait");
                     }
 
                     this.sendMail();
                     System.out.println("send");
-
                 }
             } catch (IOException | MessagingException e) {
-                e.printStackTrace();
+                logger.error("Send email failed" + e.getMessage());
             }
 
 

@@ -31,8 +31,8 @@ public class DelGuestAction extends ActionNewThred {
                 ViewController.getInstance().print("not found");
             } else {
                 guests.forEach(guest -> ViewController.getInstance()
-                        .print("ID: " + guest.getGuestId()
-                        + " " + guest.getName() + " " + guest.getSurname()));
+                        .print("ID: " + guest.getId()
+                        + " " + guest.getFirstName() + " " + guest.getLastName()));
                 ViewController.getInstance().print("Input number to delete");
                 guestService.delete(scanner.nextInt());
             }

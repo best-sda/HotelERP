@@ -14,65 +14,71 @@ import java.util.List;
 
 @Component
 public class GuestServiceImpl implements GuestService {
-    @Autowired(className = "GuestRepositoryImpl")
-    private GuestRepisitory guestRepisitoryImpl;
+    @Autowired
+    private GuestRepisitory guestRepisitoryJdbc;
 
-    public GuestRepisitory getGuestRepisitoryImpl() {
-        return guestRepisitoryImpl;
+    
+    public GuestRepisitory getGuestRepisitoryJdbc() {
+        return guestRepisitoryJdbc;
     }
 
-    public void setGuestRepisitoryImpl(GuestRepisitory guestRepisitoryImpl) {
-        this.guestRepisitoryImpl = guestRepisitoryImpl;
+    public void setGuestRepisitoryJdbc(GuestRepisitory guestRepisitoryJdbc) {
+        this.guestRepisitoryJdbc = guestRepisitoryJdbc;
     }
 
     @Override
-    public Guest save(Guest guest) {
-        return guestRepisitoryImpl.save(guest);
+    public boolean save(Guest guest) {
+        return guestRepisitoryJdbc.save(guest);
     }
 
     @Override
     public List<Guest> findBySurname(String surname) {
-        return guestRepisitoryImpl.findBySurname(surname);
+        return guestRepisitoryJdbc.findBySurname(surname);
     }
 
     @Override
     public void delete(int id) {
-        guestRepisitoryImpl.delete(id);
+        guestRepisitoryJdbc.delete(id);
     }
 
     @Override
     public Guest guestWithId(int id) {
-        return guestRepisitoryImpl.guestWithId(id);
+        return guestRepisitoryJdbc.findById(id);
     }
 
     @Override
     public void setRoomToGuest(Guest guest, Integer roomNumber) {
-        guestRepisitoryImpl.setRoomToGuest(guest, roomNumber);
+        guestRepisitoryJdbc.setRoomToGuest(guest, roomNumber);
     }
 
     @Override
     public List<Guest> getChekinedGests() {
-        return guestRepisitoryImpl.getChelinedGests();
+        return guestRepisitoryJdbc.getChelinedGests();
     }
 
     @Override
     public void chekout(Integer idGuest) {
-        guestRepisitoryImpl.chekout(idGuest);
+        guestRepisitoryJdbc.chekout(idGuest);
     }
 
     @Override
     public void setServiceToGuest(Guest guest, Service service) {
-        guestRepisitoryImpl.setServiceToGuest(guest, service);
+        guestRepisitoryJdbc.setServiceToGuest(guest, service);
     }
 
     @Override
     public void loadList() {
-        guestRepisitoryImpl.loadList();
+        guestRepisitoryJdbc.loadList();
     }
 
     @Override
     public void saveList() {
-        guestRepisitoryImpl.saveList();
+        guestRepisitoryJdbc.saveList();
+    }
+
+    @Override
+    public List<Guest> getList() {
+        return guestRepisitoryJdbc.getList();
     }
 
 }
