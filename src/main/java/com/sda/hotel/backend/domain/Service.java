@@ -9,24 +9,33 @@ import java.util.Random;
 
 public class Service implements Serializable {
 
-    private Integer ServiceId;
-    private String serviceName;
+    private Integer Id;
+    private String name;
     private Integer cost;
     private String description;
 
     public Service(String serviceName, int cost, String description) {
-        this.ServiceId = new Random().nextInt();
-        this.serviceName = serviceName;
+        this.Id = new Random().nextInt();
+        this.name = serviceName;
         this.cost = cost;
         this.description = description;
     }
+    public Service(){};
 
-    public String getServiceName() {
-        return serviceName;
+    public Integer getId() {
+        return Id;
     }
 
-    public void setServiceName(String serviceName) {
-        this.serviceName = serviceName;
+    public void setId(Integer id) {
+        Id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public int getCost() {
@@ -43,14 +52,6 @@ public class Service implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Integer getServiceId() {
-        return ServiceId;
-    }
-
-    public void setServiceId(Integer serviceId) {
-        this.ServiceId = serviceId;
     }
 
     public void setCost(Integer cost) {

@@ -25,11 +25,13 @@ public class AddRoomAction extends ActionNewThred {
         Integer number = scanner.nextInt();
         ViewController.getInstance().print("Input room status: ");
         String status = scanner.nextLine();
-        ViewController.getInstance().print("Input room description");
+        ViewController.getInstance().print("Input room id");
         int id = scanner.nextInt();
+        ViewController.getInstance().print("Input room cost");
+        int cost = scanner.nextInt();
         Room room = application.getRoomServiceImpl()
-                .save(new Room(number, status, id));
+                .save(new Room(id, number, status, false, cost ));
         ViewController.getInstance()
-                .print("Room created with id: " + room.getNumber());
+                .print("Room created with id: " + room.getId());
     }
 }

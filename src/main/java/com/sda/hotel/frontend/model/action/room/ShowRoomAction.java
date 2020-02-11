@@ -21,7 +21,7 @@ public class ShowRoomAction extends ActionNewThred {
         RoomService roomService = application.getRoomServiceImpl();
         List<Room> rooms = roomService.roomList();
         rooms.forEach(room -> ViewController.getInstance()
-                .print("Room number: " + room.getNumber()
+                .print("Room number: " + room.getId()
                         + " cost:" + room.getCost()));
     }
 

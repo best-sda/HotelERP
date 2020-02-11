@@ -19,21 +19,24 @@ import java.util.Scanner;
 public class AddGuestAction extends ActionNewThred {
     @Override
     public void execute() {
-        Application application = (Application)
-                BeanFactory.getInstance().getBean("application");
-        ViewController.getInstance().print("Input guest info: ");
         Scanner scanner = new Scanner(System.in);
-        ViewController.getInstance().print("Input guest first name: ");
-        String name = scanner.nextLine();
-        ViewController.getInstance().print("Input guest last name: ");
-        String surname = scanner.nextLine();
-        ViewController.getInstance().print("Input guest id card");
-        int idCard = scanner.nextInt();
-        ViewController.getInstance().print("Input guest phone");
-        String phone = scanner.nextLine();
-        GuestService guestService = application.getGuestServiceImpl();
-        Boolean guest = guestService.save(new Guest(name, surname, idCard, phone));
-        ViewController.getInstance()
-                .print("Guest created: " + guest);
+        synchronized (this) {
+            Application application = (Application)
+                    BeanFactory.getInstance().getBean("application");
+            ViewController.getInstance().print("Input guest info: ");
+
+            ViewController.getInstance().print("Input guest first name: ");
+            String name = scanner.nextLine();
+            ViewController.getInstance().print("Input guest last name: ");
+            String surname = scanner.nextLine();
+            ViewController.getInstance().print("Input guest id card");
+            int idCard = scanner.nextInt();
+            ViewController.getInstance().print("Input guest phone");
+            String phone = scanner.nextLine();
+            GuestService guestService = application.getGuestServiceImpl();
+            boolean guest = guestService.save(new Guest( name, surname, idCard, phone));
+            ViewController.getInstance()
+                    .print("Guest created: " + guest);
+        }
     }
 }

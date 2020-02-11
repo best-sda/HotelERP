@@ -22,7 +22,7 @@ public class ShowGuestAction extends ActionNewThred {
         Application application = (Application) BeanFactory
                 .getInstance().getBean("application");
         ViewController.getInstance()
-                .print("Input guest surname to delete: ");
+                .print("Guests: ");
         Scanner scanner = new Scanner(System.in);
 
         try {

@@ -29,8 +29,8 @@ public class ShowServiceAction extends ActionNewThred {
                 ViewController.getInstance().print("not found");
             } else {
                 services.forEach(service -> ViewController.getInstance()
-                        .print("ID: " + service.getServiceId()
-                        + " " + service.getServiceName() + " "
+                        .print("ID: " + service.getId()
+                        + " " + service.getName() + " "
                                 + service.getDescription()));
             }
 

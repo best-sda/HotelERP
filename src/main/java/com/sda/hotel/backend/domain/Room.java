@@ -7,27 +7,35 @@ package com.sda.hotel.backend.domain;
 import java.io.Serializable;
 
 public class Room implements Serializable {
-    private Integer number;
+    private Integer id;
+    private Integer roomNumber;
     private String status;
-    private Boolean repair;
     private Boolean busy;
     private int cost;
 
-    public Room(Integer number, String status,
-                Boolean repair, Boolean busy, int cost) {
-        this.number = number;
+    public Room(Integer id, Integer roomNumber, String status, Boolean busy, int cost) {
+        this.id = id;
+        this.roomNumber = roomNumber;
         this.status = status;
-        this.repair = repair;
         this.busy = busy;
         this.cost = cost;
     }
+    public Room() {};
 
-    public Room(Integer number, String status, int cost) {
-        this.number = number;
-        this.status = status;
-        this.repair = false;
-        this.busy = false;
-        this.cost = cost;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public String getStatus() {
@@ -36,22 +44,6 @@ public class Room implements Serializable {
 
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public Boolean getRepair() {
-        return repair;
-    }
-
-    public void setRepair(Boolean repair) {
-        this.repair = repair;
-    }
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public Boolean getBusy() {

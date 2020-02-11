@@ -24,16 +24,17 @@ import java.util.Collection;
 
 public class ConectionFactory {
     private String driverClassName = "";
-    private String connectionURL = "jdbc:postgresql://localhost:5432/postgres";
+    private String connectionURL = "jdbc:postgresql://localhost:5432/hotel";
     private String dbUser = "postgres";
     private String dbPass = "postgres";
     private static ConectionFactory conectionFactory;
     Logger logger = LogManager.getLogger(ConectionFactory.class);
 
     public Connection getConnection() {
-        //Class.forName("");
-        Connection connection;
+
+        Connection connection = null;
         try {
+           // Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(connectionURL, dbUser, dbPass);
             return connection;
         } catch (SQLException e) {

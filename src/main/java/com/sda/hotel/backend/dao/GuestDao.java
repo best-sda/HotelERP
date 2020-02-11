@@ -21,7 +21,7 @@ import java.util.List;
 @Component
 public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
 
-    public static final String GET_ALL_GUESTS = "select * from hotel.hotel.guest";
+    public static final String GET_ALL_GUESTS = "SELECT * FROM hotel.hotel.guest ;";
     public static final String GET_GUEST_BY_ID = "select * from hotel.hotel.guest where id = ?";
     public static final String CREATE_GUEST =
             "insert into hotel.hotel.guest (id, last_name, first_name, cert_number, phone_number) VALUES (?, ?, ?, ?,?) ";

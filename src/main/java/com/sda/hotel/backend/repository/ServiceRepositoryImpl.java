@@ -35,14 +35,14 @@ public class ServiceRepositoryImpl implements ServiceRepository, Serializable {
     @Override
     public List<Service> findByName(String name) {
         return services.stream().filter(services ->
-                name != null && services.getServiceName().startsWith(name))
+                name != null && services.getName().startsWith(name))
                 .collect(Collectors.toList());
     }
 
     @Override
     public void delete(int id) {
         services.stream().filter(service ->
-                service.getServiceId().equals(id)).findFirst()
+                service.getId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
         services.remove(id);
     }
@@ -50,7 +50,7 @@ public class ServiceRepositoryImpl implements ServiceRepository, Serializable {
     @Override
     public Service servicewithId(int id) {
         return services.stream().filter(service ->
-                service.getServiceId().equals(id)).findFirst()
+                service.getId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
     }
 

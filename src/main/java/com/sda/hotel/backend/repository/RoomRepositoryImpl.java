@@ -44,7 +44,7 @@ public class RoomRepositoryImpl implements RoomRepository, Serializable {
     @Override
     public Room roomWithId(Integer id) {
         return rooms.stream().filter(room ->
-                room.getNumber().equals(id)).findFirst()
+                room.getId().equals(id)).findFirst()
                 .orElseThrow(EntityNotFoundExeption::new);
     }
 

@@ -32,7 +32,7 @@ public class AddServiceAction extends ActionNewThred {
         Service service = serviceService
                 .save(new Service(name, cost, description));
         ViewController.getInstance()
-                .print("Service created with id: " + service.getServiceId());
+                .print("Service created with id: " + service.getId());
     }
 
 }

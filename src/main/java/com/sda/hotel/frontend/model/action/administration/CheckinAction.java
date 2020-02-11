@@ -40,14 +40,14 @@ public class CheckinAction extends ActionNewThred {
                 List<Room> rooms = roomService.roomList();
                 rooms.forEach(room ->
                         ViewController.getInstance().print("Room number: "
-                               + room.getNumber() + " cost:" + room.getCost()));
+                               + room.getId() + " cost:" + room.getCost()));
                 if (!rooms.isEmpty()) {
                     ViewController.getInstance()
                             .print("Input number to checkin");
                     Room room = roomService
                             .roomWithId(scanner.nextInt());
                     roomService.setRoomBusy(room);
-                    guestService.setRoomToGuest(guest, room.getNumber());
+                    guestService.setRoomToGuest(guest, room.getId());
 
                 } else {
                     ViewController.getInstance().print("not found");
