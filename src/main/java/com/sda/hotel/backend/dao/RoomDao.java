@@ -4,8 +4,9 @@
 
 package com.sda.hotel.backend.dao;
 
-import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Room;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,7 +22,7 @@ public class RoomDao<E, K> extends AbstractDaoImpl<Room, Integer> {
             "insert into hotel.hotel._order (id, room_number, status, bizy, cost) VALUES (?, ?, ?, ?, ?) ";
     public static final String DELETE_ROOM = "delete from hotel.hotel.room where id = ?;";
     public static final String UPDATE_ROOM = "update hotel.hotel.room SET room_number = ?, status = ?, bizy = ?, cost = ? where id = ?;";
-
+    Logger logger = LogManager.getLogger(RoomDao.class);
     @Override
     public List<Room> getAll() {
         List<Room> rooms = new ArrayList<>();
@@ -38,7 +39,7 @@ public class RoomDao<E, K> extends AbstractDaoImpl<Room, Integer> {
                 rooms.add(room);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("sql query exeption" + e);
         } finally {
             closePrepareStatement(preparedStatement);
         }
@@ -47,6 +48,25 @@ public class RoomDao<E, K> extends AbstractDaoImpl<Room, Integer> {
 
     @Override
     public Room getEntityById(Integer id) {
+        PreparedStatement preparedStatement = getPrepareStatement(GET_ROOM_BY_ID);
+        try {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Room room = new Room();
+                room.setId(resultSet.getInt(1));
+                room.setRoomNumber(resultSet.getInt(2));
+                room.setStatus(resultSet.getString(3));
+                room.setBusy(resultSet.getBoolean(4));
+                room.setCost(resultSet.getInt(5));
+                return room;
+            }
+        } catch (SQLException e) {
+            logger.error("sql query exeption" + e);
+
+        } finally {
+            closePrepareStatement(preparedStatement);
+        }
         return null;
     }
 
@@ -63,7 +83,7 @@ public class RoomDao<E, K> extends AbstractDaoImpl<Room, Integer> {
             preparedStatement.executeQuery();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("sql query exeption" + e);
             return false;
         } finally {
             closePrepareStatement(preparedStatement);
@@ -72,6 +92,20 @@ public class RoomDao<E, K> extends AbstractDaoImpl<Room, Integer> {
 
     @Override
     public boolean create(Room entity) {
-        return false;
+        PreparedStatement preparedStatement = getPrepareStatement(CREATE_ROOM);
+        try {
+            preparedStatement.setInt(1, entity.getId());
+            preparedStatement.setInt(2, entity.getRoomNumber());
+            preparedStatement.setString(3, entity.getStatus());
+            preparedStatement.setBoolean(4, entity.getBusy());
+            preparedStatement.setInt(5, entity.getCost());
+            preparedStatement.executeQuery();
+            return true;
+        } catch (SQLException e) {
+            logger.error(e);
+            return false;
+        } finally {
+            closePrepareStatement(preparedStatement);
+        }
     }
 }

@@ -3,8 +3,7 @@
  */
 
 package com.sda.hotel.backend.dao;
-
-import com.sda.hotel.backend.domain.Guest;
+import com.sda.hotel.backend.domain.Room;
 import com.sda.hotel.backend.domain.Service;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -22,7 +21,7 @@ public class ServiceDao extends AbstractDaoImpl<Service, Integer> {
     public static final String CREATE_SERVICE =
             "insert into hotel.hotel._order (id, name, description, cost_service) VALUES (?, ?, ?, ?); ";
     public static final String DELETE_SERVICE = "delete from hotel.hotel.service where id = ?;";
-    public static final String UPDATE_SERVICE = "update hotel.hotel._order SET date_arival = ?, date_depart = ? + paid = ? where id = ?;";
+    public static final String UPDATE_SERVICE = "update hotel.hotel.service SET name = ?, description = ? + cost_service = ? where id = ?;";
     Logger logger = LogManager.getLogger(ServiceDao.class);
     @Override
     public List<Service> getAll() {
@@ -48,6 +47,24 @@ public class ServiceDao extends AbstractDaoImpl<Service, Integer> {
 
     @Override
     public Service getEntityById(Integer id) {
+        PreparedStatement preparedStatement = getPrepareStatement(GET_SERVICE_BY_ID);
+        try {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Service service = new Service();
+                service.setId(resultSet.getInt(1));
+                service.setName(resultSet.getString(2));
+                service.setDescription(resultSet.getString(3));
+                service.setCost(resultSet.getInt(4));
+                return service;
+            }
+        } catch (SQLException e) {
+            logger.error("sql query exeption" + e);
+
+        } finally {
+            closePrepareStatement(preparedStatement);
+        }
         return null;
     }
 
@@ -73,6 +90,19 @@ public class ServiceDao extends AbstractDaoImpl<Service, Integer> {
 
     @Override
     public boolean create(Service entity) {
-        return false;
+        PreparedStatement preparedStatement = getPrepareStatement(CREATE_SERVICE);
+        try {
+            preparedStatement.setInt(1, entity.getId());
+            preparedStatement.setString(2, entity.getName());
+            preparedStatement.setString(3, entity.getDescription());
+            preparedStatement.setInt(4, entity.getCost());
+            preparedStatement.executeQuery();
+            return true;
+        } catch (SQLException e) {
+            logger.error(e);
+            return false;
+        } finally {
+            closePrepareStatement(preparedStatement);
+        }
     }
 }

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<checkstyle version="8.19">
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\annotation\Autowired.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\annotation\Component.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\Application.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\controller\EmailController.java">
+<error line="19" column="24" severity="error" message="Name &apos;TIME&apos; must match pattern &apos;^[a-z][a-zA-Z0-9]*$&apos;." source="com.puppycrawl.tools.checkstyle.checks.naming.StaticVariableNameCheck"/>
+<error line="19" column="31" severity="error" message="&apos;6000&apos; is a magic number." source="com.puppycrawl.tools.checkstyle.checks.coding.MagicNumberCheck"/>
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\domain\Administrator.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\domain\Guest.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\domain\Person.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\domain\Room.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\domain\Service.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\exeption\EntityNotFoundExeption.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\repository\GuestRepisitory.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\repository\GuestRepisitoryImpl.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\repository\RoomRepository.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\repository\RoomRepositoryImpl.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\repository\ServiceRepository.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\repository\ServiceRepositoryImpl.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\GuestService.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\GuestServiceImpl.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\RoomService.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\RoomServiceImpl.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\ServiceService.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\ServiceServiceImpl.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\UtilsService.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\service\UtilsServiceImpl.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\utils\BeanFactory.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\utils\EmailAutentificator.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\utils\JavaSerialization.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\backend\utils\JsonSerialization.java">
+<error line="32" severity="error" message="Line is longer than 80 characters (found 81)." source="com.puppycrawl.tools.checkstyle.checks.sizes.LineLengthCheck"/>
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\controller\MenuController.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\exeption\MenuExeption.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\ActionNewThred.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\administration\CheckinAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\administration\ChekoutAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\administration\SetServiceAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\guest\AddGuestAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\guest\DelGuestAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\guest\ShowGuestAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\IAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\room\AddRoomAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\room\DelRoomAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\room\ShowRoomAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\service\AddServiceAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\service\DelServiceAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\service\ShowServiceAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\utils\ExitAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\utils\LoadFileAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\utils\SaveFileAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\action\utils\StopMessagingAction.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\builder\Builder.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\builder\IBuilder.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\menu\Menu.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\menu\MenuItem.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\navigator\Inavigator.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\model\navigator\Navigator.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\frontend\view\ViewController.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\java\com\sda\hotel\Main.java">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\resources\config.properties">
+</file>
+<file name="C:\Users\best-\Hotel\src\main\resources\email.properties">
+</file>
+</checkstyle>
