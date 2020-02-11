@@ -9,41 +9,61 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class Guest extends Person implements Serializable {
-    private Integer guestId;
-    private Integer room;
-    private List<Service> choosedServices = new ArrayList<>();
+public class Guest implements Serializable {
+    private Integer id;
+    private String lastName;
+    private String firstName;
+    private int certNumber;
+    private String phoneNumber;
+Random random = new Random();
+    public Guest( String lastName, String firstName, int certNumber, String phoneNumber) {
+        this.id =random.nextInt() ;
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.certNumber = certNumber;
+        this.phoneNumber = phoneNumber;
+    }
+    public Guest() {
 
-    public Integer getGuestId() {
-        return guestId;
     }
 
-    public void setGuestId(Integer guestId) {
-        this.guestId = guestId;
+    public Integer getId() {
+        return id;
     }
 
-    public Integer getRoom() {
-        return room;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public void setRoom(Integer room) {
-        this.room = room;
+    public String getLastName() {
+        return lastName;
     }
 
-    public List<Service> getChoosedServices() {
-        return choosedServices;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setChoosedServices(List<Service> choosedServices) {
-        this.choosedServices = choosedServices;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void addService(Service service) {
-        choosedServices.add(service);
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public Guest(String name, String surName, int idCard) {
-        super(name, surName, idCard);
-        this.guestId = new Random().nextInt();
+    public int getCertNumber() {
+        return certNumber;
+    }
+
+    public void setCertNumber(int certNumber) {
+        this.certNumber = certNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }
