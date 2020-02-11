@@ -11,7 +11,7 @@ import java.util.List;
 
 @Component
 public interface ServiceService {
-    Service save(Service service);
+    Boolean save(Service service);
 
     List<Service> findByName(String name);
 

@@ -19,8 +19,6 @@ public interface RoomRepository {
 
     void setRoomBusy(Room room);
 
-    void chekoutGuest(Integer guestId);
-
     void saveList();
 
     void loadList();

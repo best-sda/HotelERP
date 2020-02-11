@@ -29,10 +29,10 @@ public class AddServiceAction extends ActionNewThred {
         ViewController.getInstance().print("Input service description");
         String description = scanner.nextLine();
         ServiceService serviceService = application.getServiceServiceImpl();
-        Service service = serviceService
+        Boolean service = serviceService
                 .save(new Service(name, cost, description));
         ViewController.getInstance()
-                .print("Service created with id: " + service.getId());
+                .print("Service created with id: " + service);
     }
 
 }

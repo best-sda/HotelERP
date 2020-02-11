@@ -14,39 +14,39 @@ import java.util.List;
 @Component
 public class ServiceServiceImpl implements ServiceService {
     @Autowired
-    private ServiceRepository serviceRepository;
+    private ServiceRepository serviceRepositoryJdbc;
 
-    public void setServiceRepository(ServiceRepository serviceRepository) {
-        this.serviceRepository = serviceRepository;
+    public void setServiceRepositoryJdbc(ServiceRepository serviceRepositoryJdbc) {
+        this.serviceRepositoryJdbc = serviceRepositoryJdbc;
     }
 
     @Override
-    public Service save(Service service) {
-        return serviceRepository.save(service);
+    public Boolean save(Service service) {
+        return serviceRepositoryJdbc.save(service);
     }
 
     @Override
     public List<Service> findByName(String name) {
-        return serviceRepository.findByName(name);
+        return serviceRepositoryJdbc.findByName(name);
     }
 
     @Override
     public void delete(int id) {
-        serviceRepository.delete(id);
+        serviceRepositoryJdbc.delete(id);
     }
 
     @Override
     public Service servicewithId(int id) {
-        return serviceRepository.servicewithId(id);
+        return serviceRepositoryJdbc.servicewithId(id);
     }
 
     @Override
     public void loadList() {
-        serviceRepository.loadList();
+        serviceRepositoryJdbc.loadList();
     }
 
     @Override
     public void saveList() {
-        serviceRepository.saveList();
+        serviceRepositoryJdbc.saveList();
     }
 }

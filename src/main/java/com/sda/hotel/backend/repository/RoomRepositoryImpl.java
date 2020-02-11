@@ -54,11 +54,6 @@ public class RoomRepositoryImpl implements RoomRepository, Serializable {
     }
 
     @Override
-    public void chekoutGuest(Integer roomNumber) {
-        rooms.get(roomNumber).setBusy(false);
-    }
-
-    @Override
     public void saveList() {
         JsonSerialization.saveList("roomList.txt", roomList());
     }

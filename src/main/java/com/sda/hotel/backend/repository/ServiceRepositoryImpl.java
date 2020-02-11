@@ -27,9 +27,9 @@ public class ServiceRepositoryImpl implements ServiceRepository, Serializable {
     private List<Service> services = new ArrayList<>();
 
     @Override
-    public Service save(Service service) {
+    public boolean save(Service service) {
         services.add(service);
-        return service;
+        return true;
     }
 
     @Override

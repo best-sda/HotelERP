@@ -14,29 +14,29 @@ import java.util.List;
 @Component
 public class RoomServiceImpl implements RoomService {
     @Autowired
-    private RoomRepository roomRepositoryImpl;
+    private RoomRepository roomRepositoryJdbc;
 
-    public RoomRepository getRoomRepositoryImpl() {
-        return roomRepositoryImpl;
+    public RoomRepository getRoomRepositoryJdbc() {
+        return roomRepositoryJdbc;
     }
 
-    public void setRoomRepositoryImpl(RoomRepository roomRepositoryImpl) {
-        this.roomRepositoryImpl = roomRepositoryImpl;
+    public void setRoomRepositoryJdbc(RoomRepository roomRepositoryJdbc) {
+        this.roomRepositoryJdbc = roomRepositoryJdbc;
     }
 
     @Override
     public Room save(Room room) {
-        return roomRepositoryImpl.save(room);
+        return roomRepositoryJdbc.save(room);
     }
 
     @Override
     public List<Room> roomList() {
-        return roomRepositoryImpl.roomList();
+        return roomRepositoryJdbc.roomList();
     }
 
     @Override
     public void delete(int id) {
-        roomRepositoryImpl.delete(id);
+        roomRepositoryJdbc.delete(id);
     }
 
     @Override
@@ -46,26 +46,25 @@ public class RoomServiceImpl implements RoomService {
 
     @Override
     public Room roomWithId(int id) {
-        return roomRepositoryImpl.roomWithId(id);
+        return roomRepositoryJdbc.roomWithId(id);
     }
 
     @Override
     public void setRoomBusy(Room room) {
-        roomRepositoryImpl.setRoomBusy(room);
+        roomRepositoryJdbc.setRoomBusy(room);
     }
 
     @Override
     public void chekoutGuest(Integer guestId) {
-        roomRepositoryImpl.chekoutGuest(guestId);
     }
 
     @Override
     public void loadList() {
-        roomRepositoryImpl.loadList();
+        roomRepositoryJdbc.loadList();
     }
 
     @Override
     public void saveList() {
-        roomRepositoryImpl.saveList();
+        roomRepositoryJdbc.saveList();
     }
 }
