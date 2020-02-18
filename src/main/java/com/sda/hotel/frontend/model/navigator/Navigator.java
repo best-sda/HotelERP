@@ -57,11 +57,11 @@ public class Navigator implements Inavigator {
         if (Optional.ofNullable(submenu.getAction()).isPresent()) {
             try {
                 action = submenu.getAction();
-                Thread thread = new Thread((Runnable) action);
-                thread.start();
-                if (thread.isInterrupted()) {
-                    thread.join();
-                }
+                   Thread thread = new Thread((Runnable) action);
+                   thread.start();
+                  // if (thread.isInterrupted()) {
+                       thread.join();
+                 //  }
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

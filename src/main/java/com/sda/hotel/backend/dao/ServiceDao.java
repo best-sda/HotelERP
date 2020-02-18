@@ -3,6 +3,7 @@
  */
 
 package com.sda.hotel.backend.dao;
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;
 import com.sda.hotel.backend.domain.Service;
 import org.apache.log4j.LogManager;
@@ -14,7 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class ServiceDao extends AbstractDaoImpl<Service, Integer> {
     public static final String GET_ALL_SERVICES = "SELECT * FROM hotel.hotel.service ;";
     public static final String GET_SERVICE_BY_ID = "select * from hotel.hotel.service where id = ?;";

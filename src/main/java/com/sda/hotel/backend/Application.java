@@ -6,7 +6,9 @@ package com.sda.hotel.backend;
 
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
+import com.sda.hotel.backend.repository.OrderRepository;
 import com.sda.hotel.backend.service.GuestService;
+import com.sda.hotel.backend.service.OrderService;
 import com.sda.hotel.backend.service.RoomService;
 import com.sda.hotel.backend.service.ServiceService;
 
@@ -18,6 +20,16 @@ public class Application {
     private RoomService roomServiceImpl;
     @Autowired
     private ServiceService serviceServiceImpl;
+    @Autowired
+    private OrderService orderServiceImpl;
+
+    public OrderService getOrderServiceImpl() {
+        return orderServiceImpl;
+    }
+
+    public void setOrderServiceImpl(OrderService orderServiceImpl) {
+        this.orderServiceImpl = orderServiceImpl;
+    }
 
     public void setRoomServiceImpl(final RoomService roomServiceImpl) {
         this.roomServiceImpl = roomServiceImpl;

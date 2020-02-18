@@ -4,17 +4,20 @@
 
 package com.sda.hotel.backend.domain;
 
+import java.time.LocalDate;
+import java.util.Random;
+
 public class Order {
     private Integer id;
-    private String dateArival;
-    private String dateDepart;
+    private LocalDate dateArival;
+    private LocalDate dateDepart;
     private Boolean paid;
     private Integer roomId;
     private  Integer guestId;
     private Integer serviceId;
-
-    public Order(Integer id, String dateArival, String dateDepart, Boolean paid, Integer roomId, Integer guestId, Integer serviceId) {
-        this.id = id;
+    Random random = new Random();
+    public Order( LocalDate dateArival, LocalDate dateDepart, Boolean paid, Integer roomId, Integer guestId, Integer serviceId) {
+        this.id = random.nextInt();
         this.dateArival = dateArival;
         this.dateDepart = dateDepart;
         this.paid = paid;
@@ -32,19 +35,19 @@ public class Order {
         this.id = id;
     }
 
-    public String getDateArival() {
+    public LocalDate getDateArival() {
         return dateArival;
     }
 
-    public void setDateArival(String dateArival) {
+    public void setDateArival(LocalDate dateArival) {
         this.dateArival = dateArival;
     }
 
-    public String getDateDepart() {
+    public LocalDate getDateDepart() {
         return dateDepart;
     }
 
-    public void setDateDepart(String dateDepart) {
+    public void setDateDepart(LocalDate dateDepart) {
         this.dateDepart = dateDepart;
     }
 

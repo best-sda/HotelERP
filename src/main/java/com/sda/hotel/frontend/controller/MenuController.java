@@ -31,8 +31,8 @@ public class MenuController {
     public void run() {
         navigator.setCurentMenu(builder.buildMenu());
         ViewController.getInstance().print("Hotel program");
-
         while (true) {
+
             navigator.printMenu();
             Scanner scanner = new Scanner(System.in);
             int index = scanner.nextInt();
@@ -41,7 +41,7 @@ public class MenuController {
             } catch (MenuExeption e) {
                 ViewController.getInstance()
                         .print("invalid number, shod be in range " + 1
-                        + navigator.getCurentMenu().getItems().size());
+                                + navigator.getCurentMenu().getItems().size());
             }
         }
     }

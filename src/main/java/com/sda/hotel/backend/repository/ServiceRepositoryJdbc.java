@@ -17,6 +17,14 @@ public class ServiceRepositoryJdbc implements ServiceRepository {
     @Autowired
     OrderDao orderDao;
 
+    public void setServiceDao(ServiceDao serviceDao) {
+        this.serviceDao = serviceDao;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
     @Override
     public boolean save(Service service) {
         return serviceDao.create(service);

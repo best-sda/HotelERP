@@ -4,6 +4,7 @@
 
 package com.sda.hotel.backend.dao;
 
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -13,16 +14,17 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+@Component
+public class RoomDao extends AbstractDaoImpl<Room, Integer> {
 
-public class RoomDao<E, K> extends AbstractDaoImpl<Room, Integer> {
-
-    public static final String GET_ALL_ROOMS = "SELECT * FROM hotel.hotel.room ;";
+    public static final String GET_ALL_ROOMS = "SELECT * FROM hotel.hotel.room;";
     public static final String GET_ROOM_BY_ID = "select * from hotel.hotel.room where id = ?;";
     public static final String CREATE_ROOM =
-            "insert into hotel.hotel._order (id, room_number, status, bizy, cost) VALUES (?, ?, ?, ?, ?) ";
+            "insert into hotel.hotel._order (id, room_number, status, bizy, cost) VALUES (?, ?, ?, ?, ?);";
     public static final String DELETE_ROOM = "delete from hotel.hotel.room where id = ?;";
     public static final String UPDATE_ROOM = "update hotel.hotel.room SET room_number = ?, status = ?, bizy = ?, cost = ? where id = ?;";
     Logger logger = LogManager.getLogger(RoomDao.class);
+
     @Override
     public List<Room> getAll() {
         List<Room> rooms = new ArrayList<>();

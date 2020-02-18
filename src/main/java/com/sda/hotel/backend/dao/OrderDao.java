@@ -4,24 +4,24 @@
 
 package com.sda.hotel.backend.dao;
 
-import com.google.common.collect.Ordering;
-import com.sda.hotel.backend.domain.Guest;
+import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Order;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-
+@Component
 public class OrderDao extends AbstractDaoImpl<Order, Integer> {
 
-    public static final String GET_ALL_ORDERS = "SELECT * FROM hotel.hotel._order ;";
-    public static final String GET_ORDER_BY_ID = "select * from hotel.hotel._order where id = ?;";
-    public static final String CREATE_ORDER =
-            "insert into hotel.hotel._order (id, date_arival, date_depart, paid, id_guest,id_room,  id_service) VALUES (?, ?, ?, ?, ?, ?, ?) ";
-    public static final String DELETE_ORDER = "delete from hotel.hotel._order where id = ?;";
-    public static final String UPDATE_ORDER = "update hotel.hotel._order SET date_arival = ?, date_depart = ? + paid = ? where id = ?;";
+    private static final String GET_ALL_ORDERS = "SELECT * FROM hotel.hotel._order ;";
+    private static final String GET_ORDER_BY_ID = "select * from hotel.hotel._order where id = ?;";
+    private static final String CREATE_ORDER =
+            "insert into hotel.hotel._order (date_arival, date_depart, paid, id_guest,id_room,  id_service) VALUES (?, ?, ?, ?, ?, ?);";
+    private static final String DELETE_ORDER = "delete from hotel.hotel._order where id = ?;";
+    private static final String UPDATE_ORDER = "update hotel.hotel._order SET date_arival = ?, date_depart = ? + paid = ? where id = ?;";
+    Logger logger = LogManager.getLogger(OrderDao.class);
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
@@ -31,8 +31,8 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
             while (resultSet.next()) {
                 Order order = new Order();
                 order.setId(resultSet.getInt(1));
-                order.setDateArival(resultSet.getString(2));
-                order.setDateDepart(resultSet.getString(3));
+                order.setDateArival(resultSet.getDate(2).toLocalDate());
+                order.setDateDepart(resultSet.getDate(3).toLocalDate());
                 order.setPaid(resultSet.getBoolean(4));
                 order.setServiceId(resultSet.getInt(7));
                 order.setGuestId(resultSet.getInt(5));
@@ -40,7 +40,7 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
                 orders.add(order);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         } finally {
             closePrepareStatement(preparedStatement);
         }
@@ -56,8 +56,8 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
             while (resultSet.next()) {
                 Order order = new Order();
                 order.setId(resultSet.getInt(1));
-                order.setDateArival(resultSet.getString(2));
-                order.setDateDepart(resultSet.getString(3));
+                order.setDateArival(resultSet.getDate(2).toLocalDate());
+                order.setDateDepart(resultSet.getDate(3).toLocalDate());
                 order.setPaid(resultSet.getBoolean(4));
                 order.setServiceId(resultSet.getInt(7));
                 order.setGuestId(resultSet.getInt(5));
@@ -65,8 +65,7 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
                 return order;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
-
+            logger.error(e);
         } finally {
             closePrepareStatement(preparedStatement);
         }
@@ -77,13 +76,13 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
     public Order update(Order entity) {
         PreparedStatement preparedStatement = getPrepareStatement(UPDATE_ORDER);
         try {
-            preparedStatement.setString(1, entity.getDateArival());
-            preparedStatement.setString(2, entity.getDateDepart());
+            preparedStatement.setDate(1, Date.valueOf(entity.getDateArival()));
+            preparedStatement.setDate(2, Date.valueOf(entity.getDateDepart()));
             preparedStatement.setBoolean(3, entity.getPaid());
             preparedStatement.setInt(4, entity.getId());
             return getEntityById(entity.getId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
         }
         return null;
     }
@@ -96,7 +95,7 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
             preparedStatement.executeQuery();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
             return false;
         } finally {
             closePrepareStatement(preparedStatement);
@@ -107,18 +106,22 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
     public boolean create(Order entity) {
         PreparedStatement preparedStatement = getPrepareStatement(CREATE_ORDER);
         try {
-            preparedStatement.setInt(1, entity.getId());
-            preparedStatement.setString(2, entity.getDateArival());
-            preparedStatement.setString(3, entity.getDateDepart());
-            preparedStatement.setBoolean(4, entity.getPaid());
-            preparedStatement.setInt(5, entity.getGuestId());
-            preparedStatement.setInt(6, entity.getRoomId());
-            preparedStatement.setInt(7, entity.getServiceId());
+            preparedStatement.setDate(1, Date.valueOf(entity.getDateArival()));
+            preparedStatement.setDate(2, Date.valueOf(entity.getDateDepart()));
+            preparedStatement.setBoolean(3, entity.getPaid());
+            preparedStatement.setInt(4, entity.getGuestId());
+            preparedStatement.setInt(5, entity.getRoomId());
+            if (entity.getServiceId() == null) {
+                preparedStatement.setNull(6 , Types.INTEGER);
+            } else {
+                preparedStatement.setInt(6,  entity.getServiceId());
+            }
+
 
             preparedStatement.executeQuery();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error(e);
             return false;
         } finally {
             closePrepareStatement(preparedStatement);

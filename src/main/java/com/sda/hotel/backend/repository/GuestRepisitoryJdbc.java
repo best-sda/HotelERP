@@ -14,6 +14,8 @@ import com.sda.hotel.backend.domain.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class GuestRepisitoryJdbc implements GuestRepisitory {
     public void setGuestDao(GuestDao guestDao) {
@@ -26,7 +28,13 @@ public class GuestRepisitoryJdbc implements GuestRepisitory {
     OrderDao orderDao;
     @Override
     public List<Guest> findBySurname(String surname) {
-        return null;
+        List<Guest> guests = guestDao.getAll();
+        return guests.stream().filter(g -> g.getLastName().equals(surname))
+                .collect(Collectors.toList());
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
     }
 
     @Override
@@ -56,11 +64,11 @@ public class GuestRepisitoryJdbc implements GuestRepisitory {
         for(Guest guest : guests){
             for (Order order : orders){
                 if(guest.getId() == order.getGuestId()){
-                    guests.add(guest);
+                    result.add(guest);
                 }
             }
         }
-        return guests;
+        return result;
     }
 
     @Override

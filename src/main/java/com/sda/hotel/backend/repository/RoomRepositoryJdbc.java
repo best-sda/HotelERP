@@ -32,6 +32,14 @@ public class RoomRepositoryJdbc implements RoomRepository {
         return roomDao.getAll();
     }
 
+    public void setRoomDao(RoomDao roomDao) {
+        this.roomDao = roomDao;
+    }
+
+    public void setOrderDao(OrderDao orderDao) {
+        this.orderDao = orderDao;
+    }
+
     @Override
     public Room roomWithId(Integer id) {
         return roomDao.getEntityById(id);

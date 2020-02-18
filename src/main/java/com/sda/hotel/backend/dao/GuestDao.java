@@ -24,7 +24,7 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
     public static final String GET_ALL_GUESTS = "SELECT * FROM hotel.hotel.guest ;";
     public static final String GET_GUEST_BY_ID = "select * from hotel.hotel.guest where id = ?";
     public static final String CREATE_GUEST =
-            "insert into hotel.hotel.guest (id, last_name, first_name, cert_number, phone_number) VALUES (?, ?, ?, ?,?) ";
+            "insert into hotel.hotel.guest (last_name, first_name, cert_number, phone_number) VALUES (?, ?, ?,?);";
     public static final String DELETE_GUEST = "delete from hotel.hotel.guest where id = ?";
     public static final String UPDATE_GUEST = "update hotel.hotel.guest SET last_name = ?,first_name = ? + cert_number = ?, phone_number = ? where id = ?";
 
@@ -110,12 +110,11 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
     public boolean create(Guest entity) {
         PreparedStatement preparedStatement = getPrepareStatement(CREATE_GUEST);
         try {
-            preparedStatement.setInt(1, entity.getId());
-            preparedStatement.setString(2, entity.getLastName());
-            preparedStatement.setString(3, entity.getFirstName());
-            preparedStatement.setInt(4, entity.getCertNumber());
-            preparedStatement.setString(5, entity.getPhoneNumber());
-            preparedStatement.executeQuery();
+            preparedStatement.setString(1, entity.getLastName());
+            preparedStatement.setString(2, entity.getFirstName());
+            preparedStatement.setInt(3, entity.getCertNumber());
+            preparedStatement.setString(4, entity.getPhoneNumber());
+            preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
