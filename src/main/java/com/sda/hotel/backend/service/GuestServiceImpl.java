@@ -8,7 +8,7 @@ import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Service;
-import com.sda.hotel.backend.repository.GuestRepisitory;
+import com.sda.hotel.backend.repository.guest.GuestRepisitory;
 
 import java.util.List;
 
@@ -17,7 +17,7 @@ public class GuestServiceImpl implements GuestService {
     @Autowired
     private GuestRepisitory guestRepisitoryJdbc;
 
-    
+
     public GuestRepisitory getGuestRepisitoryJdbc() {
         return guestRepisitoryJdbc;
     }

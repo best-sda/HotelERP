@@ -7,7 +7,7 @@ package com.sda.hotel.backend.service;
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;
-import com.sda.hotel.backend.repository.RoomRepository;
+import com.sda.hotel.backend.repository.room.RoomRepository;
 
 import java.util.List;
 

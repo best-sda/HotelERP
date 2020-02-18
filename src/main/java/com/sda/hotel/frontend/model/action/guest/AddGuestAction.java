@@ -29,7 +29,6 @@ public class AddGuestAction extends ActionNewThred {
         Application application = (Application)
                 BeanFactory.getInstance().getBean("application");
         ViewController.getInstance().print("Input guest info: ");
-
         ViewController.getInstance().print("Input guest first name: ");
         String name = scanner.nextLine();
         ViewController.getInstance().print("Input guest last name: ");
@@ -40,9 +39,7 @@ public class AddGuestAction extends ActionNewThred {
         String phone = scanner.nextLine();
         GuestService guestService = application.getGuestServiceImpl();
         boolean guest = guestService.save(new Guest(name, surname, idCard, phone));
-        ViewController.getInstance()
-                .print("Guest created: " + guest);
-
+        ViewController.getInstance().print("Guest created: " + guest);
 
     }
 

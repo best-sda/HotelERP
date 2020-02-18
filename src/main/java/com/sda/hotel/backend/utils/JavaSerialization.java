@@ -14,6 +14,7 @@ import java.util.List;
 public final class JavaSerialization {
 
     private static Logger logger = LogManager.getLogger(JavaSerialization.class);
+
     private void javaSerialisation() {
     }
 

@@ -21,34 +21,35 @@
 package com.sda.hotel.backend.dao;
 
 import com.sda.hotel.backend.utils.ConectionFactory;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public abstract class AbstractDaoImpl<E, K> implements AbstractDao<E, K>  {
+public abstract class AbstractDaoImpl<E, K> implements AbstractDao<E, K> {
     private ConectionFactory conectionFactory = ConectionFactory.getInstance();
     private Connection connection = conectionFactory.getConnection();
+    Logger logger = LogManager.getLogger(AbstractDao.class);
 
-    // Получение экземпляра PrepareStatement
     public PreparedStatement getPrepareStatement(String sql) {
         PreparedStatement ps = null;
         try {
             ps = connection.prepareStatement(sql);
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL query failed" + e);
         }
 
         return ps;
     }
 
-    // Закрытие PrepareStatement
     public void closePrepareStatement(PreparedStatement ps) {
         if (ps != null) {
             try {
                 ps.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.error("SQL query failed" + e);
             }
         }
     }

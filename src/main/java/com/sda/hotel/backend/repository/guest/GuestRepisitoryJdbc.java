@@ -1,8 +1,12 @@
 /*
+ * Created by Dmitry Scherbakov on 18.02.2020, 3:29
+ */
+
+/*
  * Created by Dmitry Scherbakov on 10.02.2020, 22:16
  */
 
-package com.sda.hotel.backend.repository;
+package com.sda.hotel.backend.repository.guest;
 
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
@@ -26,6 +30,7 @@ public class GuestRepisitoryJdbc implements GuestRepisitory {
     GuestDao guestDao;
     @Autowired
     OrderDao orderDao;
+
     @Override
     public List<Guest> findBySurname(String surname) {
         List<Guest> guests = guestDao.getAll();
@@ -61,9 +66,9 @@ public class GuestRepisitoryJdbc implements GuestRepisitory {
         List<Guest> guests = guestDao.getAll();
         List<Order> orders = orderDao.getAll();
         List<Guest> result = new ArrayList<>();
-        for(Guest guest : guests){
-            for (Order order : orders){
-                if(guest.getId() == order.getGuestId()){
+        for (Guest guest : guests) {
+            for (Order order : orders) {
+                if (guest.getId() == order.getGuestId()) {
                     result.add(guest);
                 }
             }

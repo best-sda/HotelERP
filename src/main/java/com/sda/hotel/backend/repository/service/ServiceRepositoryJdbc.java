@@ -1,8 +1,12 @@
 /*
+ * Created by Dmitry Scherbakov on 18.02.2020, 3:31
+ */
+
+/*
  * Created by Dmitry Scherbakov on 11.02.2020, 13:35
  */
 
-package com.sda.hotel.backend.repository;
+package com.sda.hotel.backend.repository.service;
 
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.dao.OrderDao;
@@ -32,7 +36,6 @@ public class ServiceRepositoryJdbc implements ServiceRepository {
 
     @Override
     public List<Service> findByName(String name) {
-
         return null;
     }
 

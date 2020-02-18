@@ -2,7 +2,7 @@
  * Created by Dmitry Scherbakov in 02.12.2019, 13:45
  */
 
-package com.sda.hotel.frontend.model.action.administration;
+package com.sda.hotel.frontend.model.action.order;
 
 import com.sda.hotel.backend.Application;
 import com.sda.hotel.backend.domain.Guest;
@@ -13,11 +13,13 @@ import com.sda.hotel.backend.service.ServiceService;
 import com.sda.hotel.backend.utils.BeanFactory;
 import com.sda.hotel.frontend.model.action.ActionNewThred;
 import com.sda.hotel.frontend.view.ViewController;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class SetServiceAction extends ActionNewThred {
+    Logger logger = Logger.getLogger(SetServiceAction.class);
 
     @Override
     public void execute() {
@@ -35,7 +37,7 @@ public class SetServiceAction extends ActionNewThred {
             } else {
                 guests.forEach(guest -> ViewController.getInstance()
                         .print("ID: " + guest.getId()
-                        + " " + guest.getFirstName() + " " + guest.getLastName()));
+                                + " " + guest.getFirstName() + " " + guest.getLastName()));
                 ViewController.getInstance().print("Input number to delete");
                 Guest guest = guestService.guestWithId(scanner.nextInt());
                 ViewController.getInstance()
@@ -49,7 +51,7 @@ public class SetServiceAction extends ActionNewThred {
                 } else {
                     services.forEach(service -> ViewController.getInstance()
                             .print("ID: " + service.getId()
-                            + " " + service.getName() + " "
+                                    + " " + service.getName() + " "
                                     + service.getDescription()));
                     ViewController.getInstance()
                             .print("Input number to delete");
@@ -60,6 +62,7 @@ public class SetServiceAction extends ActionNewThred {
             }
 
         } catch (EntityNotFoundExeption e) {
+            logger.error("Room not found" + e);
             ViewController.getInstance().print("Room not found" + e.getId());
         }
     }

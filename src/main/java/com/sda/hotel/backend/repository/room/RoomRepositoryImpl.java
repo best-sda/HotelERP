@@ -1,8 +1,12 @@
 /*
+ * Created by Dmitry Scherbakov on 18.02.2020, 3:31
+ */
+
+/*
  * Created by Dmitry Scherbakov in 09.12.2019, 15:25
  */
 
-package com.sda.hotel.backend.repository;
+package com.sda.hotel.backend.repository.room;
 
 import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Room;

@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+
 @Component
 public class OrderDao extends AbstractDaoImpl<Order, Integer> {
 
@@ -22,6 +23,7 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
     private static final String DELETE_ORDER = "delete from hotel.hotel._order where id = ?;";
     private static final String UPDATE_ORDER = "update hotel.hotel._order SET date_arival = ?, date_depart = ? + paid = ? where id = ?;";
     Logger logger = LogManager.getLogger(OrderDao.class);
+
     @Override
     public List<Order> getAll() {
         List<Order> orders = new ArrayList<>();
@@ -112,9 +114,9 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
             preparedStatement.setInt(4, entity.getGuestId());
             preparedStatement.setInt(5, entity.getRoomId());
             if (entity.getServiceId() == null) {
-                preparedStatement.setNull(6 , Types.INTEGER);
+                preparedStatement.setNull(6, Types.INTEGER);
             } else {
-                preparedStatement.setInt(6,  entity.getServiceId());
+                preparedStatement.setInt(6, entity.getServiceId());
             }
 
 

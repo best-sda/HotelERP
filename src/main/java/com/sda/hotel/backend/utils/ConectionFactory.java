@@ -34,7 +34,7 @@ public class ConectionFactory {
 
         Connection connection = null;
         try {
-           // Class.forName("org.postgresql.Driver");
+            // Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(connectionURL, dbUser, dbPass);
             return connection;
         } catch (SQLException e) {

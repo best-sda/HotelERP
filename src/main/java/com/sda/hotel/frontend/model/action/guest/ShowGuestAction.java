@@ -11,11 +11,14 @@ import com.sda.hotel.backend.service.GuestService;
 import com.sda.hotel.backend.utils.BeanFactory;
 import com.sda.hotel.frontend.model.action.ActionNewThred;
 import com.sda.hotel.frontend.view.ViewController;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.List;
 import java.util.Scanner;
 
 public class ShowGuestAction extends ActionNewThred {
+    Logger logger = LogManager.getLogger(ShowGuestAction.class);
 
     @Override
     public void execute() {
@@ -34,9 +37,10 @@ public class ShowGuestAction extends ActionNewThred {
             } else {
                 guests.forEach(guest -> ViewController
                         .getInstance().print("ID: " + guest.getId()
-                        + " " + guest.getFirstName() + " " + guest.getLastName()));
+                                + " " + guest.getFirstName() + " " + guest.getLastName()));
             }
         } catch (EntityNotFoundExeption e) {
+            logger.error("Guest not found" + e);
             ViewController.getInstance().print("Guest not found" + e.getId());
         }
 

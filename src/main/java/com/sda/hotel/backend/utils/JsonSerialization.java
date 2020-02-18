@@ -27,7 +27,7 @@ public final class JsonSerialization {
         }
     }
 
-    public  static <E> void loadList(String path) {
+    public static <E> void loadList(String path) {
         try (Reader reader = new FileReader(path)) {
             List<E> list = new Gson().fromJson(reader, new TypeToken<List<E>>() {
             }.getType());

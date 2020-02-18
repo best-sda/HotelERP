@@ -6,7 +6,6 @@ package com.sda.hotel.backend;
 
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
-import com.sda.hotel.backend.repository.OrderRepository;
 import com.sda.hotel.backend.service.GuestService;
 import com.sda.hotel.backend.service.OrderService;
 import com.sda.hotel.backend.service.RoomService;
@@ -15,7 +14,7 @@ import com.sda.hotel.backend.service.ServiceService;
 @Component
 public class Application {
     @Autowired
-    private  GuestService guestServiceImpl;
+    private GuestService guestServiceImpl;
     @Autowired
     private RoomService roomServiceImpl;
     @Autowired

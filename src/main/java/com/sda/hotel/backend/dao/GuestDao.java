@@ -11,6 +11,8 @@ package com.sda.hotel.backend.dao;
 import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.dao.AbstractDaoImpl;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,12 +23,13 @@ import java.util.List;
 @Component
 public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
 
-    public static final String GET_ALL_GUESTS = "SELECT * FROM hotel.hotel.guest ;";
-    public static final String GET_GUEST_BY_ID = "select * from hotel.hotel.guest where id = ?";
-    public static final String CREATE_GUEST =
+    private static final String GET_ALL_GUESTS = "SELECT * FROM hotel.hotel.guest ;";
+    private static final String GET_GUEST_BY_ID = "select * from hotel.hotel.guest where id = ?";
+    private static final String CREATE_GUEST =
             "insert into hotel.hotel.guest (last_name, first_name, cert_number, phone_number) VALUES (?, ?, ?,?);";
-    public static final String DELETE_GUEST = "delete from hotel.hotel.guest where id = ?";
-    public static final String UPDATE_GUEST = "update hotel.hotel.guest SET last_name = ?,first_name = ? + cert_number = ?, phone_number = ? where id = ?";
+    private static final String DELETE_GUEST = "delete from hotel.hotel.guest where id = ?";
+    private static final String UPDATE_GUEST = "update hotel.hotel.guest SET last_name = ?,first_name = ? + cert_number = ?, phone_number = ? where id = ?";
+    Logger logger = LogManager.getLogger(GuestDao.class);
 
     @Override
     public List getAll() {
@@ -44,7 +47,7 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
                 guests.add(guest);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL query failed" + e);
         } finally {
             closePrepareStatement(preparedStatement);
         }
@@ -67,7 +70,7 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
                 return guest;
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL query failed" + e);
 
         } finally {
             closePrepareStatement(preparedStatement);
@@ -86,7 +89,7 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
             preparedStatement.setInt(5, entity.getId());
             return getEntityById(entity.getId());
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL query failed" + e);
         }
         return null;
     }
@@ -99,7 +102,7 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
             preparedStatement.executeQuery();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL query failed" + e);
             return false;
         } finally {
             closePrepareStatement(preparedStatement);
@@ -117,7 +120,7 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            e.printStackTrace();
+            logger.error("SQL query failed" + e);
             return false;
         } finally {
             closePrepareStatement(preparedStatement);

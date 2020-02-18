@@ -11,10 +11,14 @@ import com.sda.hotel.backend.service.ServiceService;
 import com.sda.hotel.backend.utils.BeanFactory;
 import com.sda.hotel.frontend.model.action.ActionNewThred;
 import com.sda.hotel.frontend.view.ViewController;
+import org.apache.log4j.Logger;
+
 import java.util.List;
 import java.util.Scanner;
 
 public class DelServiceAction extends ActionNewThred {
+    Logger logger = Logger.getLogger(DelServiceAction.class);
+
     @Override
     public void execute() {
         Application application = (Application) BeanFactory
@@ -30,13 +34,14 @@ public class DelServiceAction extends ActionNewThred {
             } else {
                 services.forEach(service -> ViewController.getInstance()
                         .print("ID: " + service.getId()
-                        + " " + service.getName()
+                                + " " + service.getName()
                                 + " " + service.getDescription()));
                 ViewController.getInstance().print("Input number to delete");
                 serviceService.delete(scanner.nextInt());
             }
 
         } catch (EntityNotFoundExeption e) {
+            logger.error("Service not found" + e);
             ViewController.getInstance().print("Service not found" + e.getId());
         }
     }

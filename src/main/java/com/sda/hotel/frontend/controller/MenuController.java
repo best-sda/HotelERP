@@ -10,6 +10,8 @@ import com.sda.hotel.frontend.exeption.MenuExeption;
 import com.sda.hotel.frontend.model.builder.IBuilder;
 import com.sda.hotel.frontend.model.navigator.Inavigator;
 import com.sda.hotel.frontend.view.ViewController;
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 
 import java.util.Scanner;
 
@@ -19,6 +21,7 @@ public class MenuController {
     private IBuilder builder;
     @Autowired
     private Inavigator navigator;
+    Logger logger = LogManager.getLogger(MenuController.class);
 
     public void setBuilder(IBuilder builder) {
         this.builder = builder;
@@ -39,6 +42,8 @@ public class MenuController {
             try {
                 navigator.navigate(index - 1);
             } catch (MenuExeption e) {
+                logger.error("invalid number, shod be in range " + 1
+                        + navigator.getCurentMenu().getItems().size() + e);
                 ViewController.getInstance()
                         .print("invalid number, shod be in range " + 1
                                 + navigator.getCurentMenu().getItems().size());

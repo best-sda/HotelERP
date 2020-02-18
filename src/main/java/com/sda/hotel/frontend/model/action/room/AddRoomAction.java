@@ -30,7 +30,7 @@ public class AddRoomAction extends ActionNewThred {
         ViewController.getInstance().print("Input room cost");
         int cost = scanner.nextInt();
         Room room = application.getRoomServiceImpl()
-                .save(new Room(id, number, status, false, cost ));
+                .save(new Room(id, number, status, false, cost));
         ViewController.getInstance()
                 .print("Room created with id: " + room.getId());
     }

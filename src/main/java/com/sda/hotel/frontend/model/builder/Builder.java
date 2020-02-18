@@ -5,9 +5,9 @@
 package com.sda.hotel.frontend.model.builder;
 
 import com.sda.hotel.backend.annotation.Component;
-import com.sda.hotel.frontend.model.action.administration.CheckinAction;
-import com.sda.hotel.frontend.model.action.administration.ChekoutAction;
-import com.sda.hotel.frontend.model.action.administration.SetServiceAction;
+import com.sda.hotel.frontend.model.action.order.CheckinAction;
+import com.sda.hotel.frontend.model.action.order.ChekoutAction;
+import com.sda.hotel.frontend.model.action.order.SetServiceAction;
 import com.sda.hotel.frontend.model.action.guest.AddGuestAction;
 import com.sda.hotel.frontend.model.action.guest.DelGuestAction;
 import com.sda.hotel.frontend.model.action.guest.ShowGuestAction;
@@ -29,6 +29,7 @@ import java.util.Arrays;
 @Component
 public class Builder implements IBuilder {
     private Menu rootMenu;
+
     public Builder() {
         rootMenu = new Menu("Root menu", null);
     }

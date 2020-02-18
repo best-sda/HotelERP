@@ -11,7 +11,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 
-
 public class Main {
 
     public static void main(String[] args) {
@@ -25,11 +24,11 @@ public class Main {
         MenuController controller = (MenuController) beanFactory
                 .getBean("menuController");
         logger.trace("get bean emailController");
-      //  EmailController emailController = (EmailController) beanFactory
-        //        .getBean("emailController");
+        EmailController emailController = (EmailController) beanFactory
+                .getBean("emailController");
         Thread.currentThread().setName("mainThread");
         logger.info("Start email sender");
-       // emailController.start();
+        emailController.start();
         logger.info("Run controller");
         controller.run();
         logger.trace("App stopped");

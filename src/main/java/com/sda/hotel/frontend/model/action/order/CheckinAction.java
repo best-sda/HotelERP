@@ -2,10 +2,9 @@
  * Created by Dmitry Scherbakov in 02.12.2019, 13:45
  */
 
-package com.sda.hotel.frontend.model.action.administration;
+package com.sda.hotel.frontend.model.action.order;
 
 import com.sda.hotel.backend.Application;
-import com.sda.hotel.backend.dao.OrderDao;
 import com.sda.hotel.backend.domain.Guest;
 import com.sda.hotel.backend.domain.Order;
 import com.sda.hotel.backend.domain.Room;
@@ -18,15 +17,14 @@ import com.sda.hotel.frontend.model.action.ActionNewThred;
 import com.sda.hotel.frontend.view.ViewController;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.apache.log4j.spi.LoggerFactory;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
 public class CheckinAction extends ActionNewThred {
     Logger logger = LogManager.getLogger(CheckinAction.class);
+
     @Override
     public void execute() {
         ViewController.getInstance().print("Input guest surname to checkin: ");
@@ -43,7 +41,7 @@ public class CheckinAction extends ActionNewThred {
             } else {
                 guests.forEach(guest -> ViewController.getInstance()
                         .print("ID: " + guest.getId()
-                        + " " + guest.getFirstName() + " " + guest.getLastName()));
+                                + " " + guest.getFirstName() + " " + guest.getLastName()));
                 ViewController.getInstance().print("Input number to checkin");
                 Guest guest = guestService.guestWithId(scanner.nextInt());
                 Scanner scanner1 = new Scanner(System.in);
@@ -51,7 +49,7 @@ public class CheckinAction extends ActionNewThred {
                 List<Room> rooms = roomService.roomList();
                 rooms.forEach(room ->
                         ViewController.getInstance().print("Room number: "
-                               + room.getId() + " cost:" + room.getCost()));
+                                + room.getId() + " cost:" + room.getCost()));
                 if (!rooms.isEmpty()) {
                     ViewController.getInstance()
                             .print("Input number to checkin");
@@ -65,7 +63,7 @@ public class CheckinAction extends ActionNewThred {
                     ViewController.getInstance().print("Depart date:");
                     String dd = scanner1.nextLine();
                     LocalDate dateDepart = LocalDate.parse(dd);
-                    Order order = new Order(dateArival, dateDepart, true,  room.getId(), guest.getId(), null);
+                    Order order = new Order(dateArival, dateDepart, true, room.getId(), guest.getId(), null);
                     Boolean result = orderService.chekinGuest(order);
                     ViewController.getInstance().print("Result: " + result);
                 } else {

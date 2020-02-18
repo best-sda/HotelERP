@@ -1,11 +1,14 @@
 /*
+ * Created by Dmitry Scherbakov on 18.02.2020, 3:31
+ */
+
+/*
  * Created by Dmitry Scherbakov on 11.02.2020, 13:33
  */
 
-package com.sda.hotel.backend.repository;
+package com.sda.hotel.backend.repository.room;
 
 import com.sda.hotel.backend.annotation.Autowired;
-import com.sda.hotel.backend.dao.GuestDao;
 import com.sda.hotel.backend.dao.OrderDao;
 import com.sda.hotel.backend.dao.RoomDao;
 import com.sda.hotel.backend.domain.Room;
@@ -17,6 +20,7 @@ public class RoomRepositoryJdbc implements RoomRepository {
     RoomDao roomDao;
     @Autowired
     OrderDao orderDao;
+
     @Override
     public Room save(Room guest) {
         return null;
