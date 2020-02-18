@@ -14,14 +14,11 @@ import com.sda.hotel.frontend.view.ViewController;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
-import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
 
 @Component
 public class AddGuestAction extends ActionNewThred {
-    Logger logger = LogManager.getLogger(AddGuestAction.class);
+    private Logger logger = LogManager.getLogger(AddGuestAction.class);
 
     @Override
     public void execute() {

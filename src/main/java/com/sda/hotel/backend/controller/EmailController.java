@@ -30,7 +30,7 @@ public class EmailController extends Thread {
     }
 
     public void setTIME(int TIME) {
-        this.TIME = TIME;
+        EmailController.TIME = TIME;
     }
 
     public GuestService getGuestServiceImpl() {
@@ -48,7 +48,9 @@ public class EmailController extends Thread {
     public void setRoomServiceImpl(final RoomService roomServiceImpl) {
         this.roomServiceImpl = roomServiceImpl;
     }
-    Logger logger = LogManager.getLogger(EmailController.class);
+
+    private Logger logger = LogManager.getLogger(EmailController.class);
+
     @Override
     public void run() {
         synchronized (this) {

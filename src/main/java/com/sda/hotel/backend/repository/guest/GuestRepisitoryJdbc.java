@@ -27,9 +27,9 @@ public class GuestRepisitoryJdbc implements GuestRepisitory {
     }
 
     @Autowired
-    GuestDao guestDao;
+    private GuestDao guestDao;
     @Autowired
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
     @Override
     public List<Guest> findBySurname(String surname) {

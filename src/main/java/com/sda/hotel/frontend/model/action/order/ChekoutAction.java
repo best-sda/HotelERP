@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ChekoutAction extends ActionNewThred {
-    Logger logger = Logger.getLogger(CheckinAction.class);
+    private Logger logger = Logger.getLogger(CheckinAction.class);
     @Override
     public void execute() {
         Application application = (Application) BeanFactory.getInstance()
@@ -29,7 +29,7 @@ public class ChekoutAction extends ActionNewThred {
             List<Guest> guests = guestService.getChekinedGests();
             guests.forEach(guest -> ViewController.getInstance()
                     .print(guest.getId() + " " + guest.getFirstName() + " "
-                    +  guest.getLastName() ));
+                    +  guest.getLastName()));
             Scanner scanner = new Scanner(System.in);
             ViewController.getInstance().print("Chose id guest to checkout: ");
             int guestId = scanner.nextInt();

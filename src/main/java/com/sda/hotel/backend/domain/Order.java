@@ -15,8 +15,8 @@ public class Order {
     private Integer roomId;
     private  Integer guestId;
     private Integer serviceId;
-    Random random = new Random();
-    public Order( LocalDate dateArival, LocalDate dateDepart, Boolean paid, Integer roomId, Integer guestId, Integer serviceId) {
+    private Random random = new Random();
+    public Order(LocalDate dateArival, LocalDate dateDepart, Boolean paid, Integer roomId, Integer guestId, Integer serviceId) {
         this.id = random.nextInt();
         this.dateArival = dateArival;
         this.dateDepart = dateDepart;
@@ -25,7 +25,9 @@ public class Order {
         this.guestId = guestId;
         this.serviceId = serviceId;
     }
-    public Order() {}
+    public Order() {
+
+    }
 
     public Integer getId() {
         return id;

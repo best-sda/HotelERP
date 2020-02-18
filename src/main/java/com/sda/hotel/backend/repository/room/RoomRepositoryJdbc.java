@@ -17,9 +17,9 @@ import java.util.List;
 
 public class RoomRepositoryJdbc implements RoomRepository {
     @Autowired
-    RoomDao roomDao;
+    private RoomDao roomDao;
     @Autowired
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
     @Override
     public Room save(Room guest) {

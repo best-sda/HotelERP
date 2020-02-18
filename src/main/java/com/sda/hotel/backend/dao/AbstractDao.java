@@ -11,13 +11,13 @@ package com.sda.hotel.backend.dao;
 import java.util.List;
 
 public interface AbstractDao<E, K> {
-    public abstract List<E> getAll();
+    List<E> getAll();
 
-    public abstract E getEntityById(K id);
+    E getEntityById(K id);
 
-    public abstract E update(E entity);
+    E update(E entity);
 
-    public abstract boolean delete(K id);
+    boolean delete(K id);
 
-    public abstract boolean create(E entity);
+    boolean create(E entity);
 }

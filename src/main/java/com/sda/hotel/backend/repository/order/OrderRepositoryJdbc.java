@@ -16,7 +16,7 @@ import com.sda.hotel.backend.domain.Order;
 @Component
 public class OrderRepositoryJdbc implements OrderRepository {
     @Autowired
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
     @Override
     public boolean checkinGuest(Order order) {

@@ -20,7 +20,10 @@ public class Room implements Serializable {
         this.busy = busy;
         this.cost = cost;
     }
-    public Room() {};
+
+    public Room() {
+
+    }
 
     public Integer getId() {
         return id;

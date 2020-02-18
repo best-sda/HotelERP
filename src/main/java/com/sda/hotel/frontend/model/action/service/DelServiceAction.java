@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class DelServiceAction extends ActionNewThred {
-    Logger logger = Logger.getLogger(DelServiceAction.class);
+    private Logger logger = Logger.getLogger(DelServiceAction.class);
 
     @Override
     public void execute() {

@@ -20,7 +20,9 @@ public class Service implements Serializable {
         this.cost = cost;
         this.description = description;
     }
-    public Service(){};
+
+    public Service() {
+    }
 
     public Integer getId() {
         return Id;

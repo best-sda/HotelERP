@@ -10,7 +10,6 @@ package com.sda.hotel.backend.dao;
 
 import com.sda.hotel.backend.annotation.Component;
 import com.sda.hotel.backend.domain.Guest;
-import com.sda.hotel.backend.dao.AbstractDaoImpl;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
@@ -29,7 +28,7 @@ public class GuestDao extends AbstractDaoImpl<Guest, Integer> {
             "insert into hotel.hotel.guest (last_name, first_name, cert_number, phone_number) VALUES (?, ?, ?,?);";
     private static final String DELETE_GUEST = "delete from hotel.hotel.guest where id = ?";
     private static final String UPDATE_GUEST = "update hotel.hotel.guest SET last_name = ?,first_name = ? + cert_number = ?, phone_number = ? where id = ?";
-    Logger logger = LogManager.getLogger(GuestDao.class);
+    private Logger logger = LogManager.getLogger(GuestDao.class);
 
     @Override
     public List getAll() {

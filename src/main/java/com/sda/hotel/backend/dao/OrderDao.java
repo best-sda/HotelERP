@@ -22,7 +22,7 @@ public class OrderDao extends AbstractDaoImpl<Order, Integer> {
             "insert into hotel.hotel._order (date_arival, date_depart, paid, id_guest,id_room,  id_service) VALUES (?, ?, ?, ?, ?, ?);";
     private static final String DELETE_ORDER = "delete from hotel.hotel._order where id = ?;";
     private static final String UPDATE_ORDER = "update hotel.hotel._order SET date_arival = ?, date_depart = ? + paid = ? where id = ?;";
-    Logger logger = LogManager.getLogger(OrderDao.class);
+    private Logger logger = LogManager.getLogger(OrderDao.class);
 
     @Override
     public List<Order> getAll() {

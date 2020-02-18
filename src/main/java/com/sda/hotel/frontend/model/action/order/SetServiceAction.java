@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class SetServiceAction extends ActionNewThred {
-    Logger logger = Logger.getLogger(SetServiceAction.class);
+    private Logger logger = Logger.getLogger(SetServiceAction.class);
 
     @Override
     public void execute() {

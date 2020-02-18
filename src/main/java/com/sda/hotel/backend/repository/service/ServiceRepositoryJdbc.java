@@ -17,9 +17,9 @@ import java.util.List;
 
 public class ServiceRepositoryJdbc implements ServiceRepository {
     @Autowired
-    ServiceDao serviceDao;
+    private ServiceDao serviceDao;
     @Autowired
-    OrderDao orderDao;
+    private OrderDao orderDao;
 
     public void setServiceDao(ServiceDao serviceDao) {
         this.serviceDao = serviceDao;

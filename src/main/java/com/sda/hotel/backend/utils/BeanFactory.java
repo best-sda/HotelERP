@@ -4,7 +4,6 @@
 
 package com.sda.hotel.backend.utils;
 
-import com.sda.hotel.Main;
 import com.sda.hotel.backend.annotation.Autowired;
 import com.sda.hotel.backend.annotation.Component;
 import org.apache.log4j.LogManager;
@@ -32,7 +31,7 @@ public final class BeanFactory {
     private BeanFactory() {
     }
 
-    Logger logger = LogManager.getLogger(BeanFactory.class);
+    private Logger logger = LogManager.getLogger(BeanFactory.class);
 
     public static BeanFactory getInstance() {
         if (instance == null) {
@@ -58,7 +57,7 @@ public final class BeanFactory {
                 .getTypesAnnotatedWith(Component.class);
         for (Class classObject : annotated) {
             if (!classObject.isInterface()) {
-                logger.info("bean: " + classObject.getName());// System.out.println("Component: " + classObject);
+                logger.info("bean: " + classObject.getName());
                 Object instance = null;
                 try {
                     instance = classObject.getDeclaredConstructor().newInstance();

@@ -5,8 +5,6 @@
 package com.sda.hotel.backend.domain;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 public class Guest implements Serializable {
@@ -15,14 +13,16 @@ public class Guest implements Serializable {
     private String firstName;
     private int certNumber;
     private String phoneNumber;
-Random random = new Random();
-    public Guest( String lastName, String firstName, int certNumber, String phoneNumber) {
-        this.id =random.nextInt() ;
+    private Random random = new Random();
+
+    public Guest(String lastName, String firstName, int certNumber, String phoneNumber) {
+        this.id = random.nextInt();
         this.lastName = lastName;
         this.firstName = firstName;
         this.certNumber = certNumber;
         this.phoneNumber = phoneNumber;
     }
+
     public Guest() {
 
     }

@@ -31,7 +31,7 @@ import java.sql.SQLException;
 public abstract class AbstractDaoImpl<E, K> implements AbstractDao<E, K> {
     private ConectionFactory conectionFactory = ConectionFactory.getInstance();
     private Connection connection = conectionFactory.getConnection();
-    Logger logger = LogManager.getLogger(AbstractDao.class);
+    private Logger logger = LogManager.getLogger(AbstractDao.class);
 
     public PreparedStatement getPrepareStatement(String sql) {
         PreparedStatement ps = null;

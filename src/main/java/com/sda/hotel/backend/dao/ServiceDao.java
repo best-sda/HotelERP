@@ -5,12 +5,10 @@
 package com.sda.hotel.backend.dao;
 
 import com.sda.hotel.backend.annotation.Component;
-import com.sda.hotel.backend.domain.Room;
 import com.sda.hotel.backend.domain.Service;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
-import java.net.ServerSocket;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,7 +23,7 @@ public class ServiceDao extends AbstractDaoImpl<Service, Integer> {
             "insert into hotel.hotel._order (id, name, description, cost_service) VALUES (?, ?, ?, ?); ";
     public static final String DELETE_SERVICE = "delete from hotel.hotel.service where id = ?;";
     public static final String UPDATE_SERVICE = "update hotel.hotel.service SET name = ?, description = ? + cost_service = ? where id = ?;";
-    Logger logger = LogManager.getLogger(ServiceDao.class);
+    private Logger logger = LogManager.getLogger(ServiceDao.class);
 
     @Override
     public List<Service> getAll() {

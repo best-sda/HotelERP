@@ -21,7 +21,7 @@ public class MenuController {
     private IBuilder builder;
     @Autowired
     private Inavigator navigator;
-    Logger logger = LogManager.getLogger(MenuController.class);
+    private Logger logger = LogManager.getLogger(MenuController.class);
 
     public void setBuilder(IBuilder builder) {
         this.builder = builder;

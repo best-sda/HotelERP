@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ShowGuestAction extends ActionNewThred {
-    Logger logger = LogManager.getLogger(ShowGuestAction.class);
+    private Logger logger = LogManager.getLogger(ShowGuestAction.class);
 
     @Override
     public void execute() {

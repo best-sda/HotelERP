@@ -20,7 +20,6 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 
 import java.sql.*;
-import java.util.Collection;
 
 public class ConectionFactory {
     private String driverClassName = "";
@@ -32,9 +31,8 @@ public class ConectionFactory {
 
     public Connection getConnection() {
 
-        Connection connection = null;
+        Connection connection;
         try {
-            // Class.forName("org.postgresql.Driver");
             connection = DriverManager.getConnection(connectionURL, dbUser, dbPass);
             return connection;
         } catch (SQLException e) {

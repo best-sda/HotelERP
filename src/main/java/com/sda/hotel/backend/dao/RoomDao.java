@@ -24,7 +24,7 @@ public class RoomDao extends AbstractDaoImpl<Room, Integer> {
             "insert into hotel.hotel._order (id, room_number, status, bizy, cost) VALUES (?, ?, ?, ?, ?);";
     public static final String DELETE_ROOM = "delete from hotel.hotel.room where id = ?;";
     public static final String UPDATE_ROOM = "update hotel.hotel.room SET room_number = ?, status = ?, bizy = ?, cost = ? where id = ?;";
-    Logger logger = LogManager.getLogger(RoomDao.class);
+    private Logger logger = LogManager.getLogger(RoomDao.class);
 
     @Override
     public List<Room> getAll() {

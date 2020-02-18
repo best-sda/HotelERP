@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CheckinAction extends ActionNewThred {
-    Logger logger = LogManager.getLogger(CheckinAction.class);
+    private Logger logger = LogManager.getLogger(CheckinAction.class);
 
     @Override
     public void execute() {
