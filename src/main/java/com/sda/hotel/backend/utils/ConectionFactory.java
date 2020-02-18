@@ -28,7 +28,7 @@ public class ConectionFactory {
     private String dbUser = "postgres";
     private String dbPass = "postgres";
     private static ConectionFactory conectionFactory;
-    Logger logger = LogManager.getLogger(ConectionFactory.class);
+    private Logger logger = LogManager.getLogger(ConectionFactory.class);
 
     public Connection getConnection() {
 

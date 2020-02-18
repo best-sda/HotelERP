@@ -61,8 +61,8 @@ public final class BeanFactory {
                 logger.info("bean: " + classObject.getName());// System.out.println("Component: " + classObject);
                 Object instance = null;
                 try {
-                    instance = classObject.newInstance();
-                } catch (InstantiationException | IllegalAccessException e) {
+                    instance = classObject.getDeclaredConstructor().newInstance();
+                } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
                     logger.error("object not instsnceing " + classObject.getName() + e.getMessage());
                 }
                 String beanName = classObject.getSimpleName()
